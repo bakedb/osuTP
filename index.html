@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>osu! Inspired Tournament Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0f0f13;
+      --bg-elev: #171720;
+      --card: #1e1e2a;
+      --text: #e7e7ef;
+      --muted: #b7b7c9;
+      --accent: #ff66aa; /* osu! pink-ish */
+      --accent-2: #7a2beb; /* secondary vibe */
+      --ok: #2ecc71;
+      --bad: #ff4d4f;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    }
+
+    /* Top nav */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: linear-gradient(90deg, var(--bg-elev), var(--card));
+      border-bottom: 1px solid #26263a;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+    .brand .logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fff 0%, var(--accent) 40%, #b30460 100%);
+      box-shadow: 0 0 12px rgba(255, 102, 170, 0.6);
+    }
+    .brand .name {
+      color: var(--text);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+    }
+    .tab-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-weight: 600;
+    }
+    .tab-btn:hover { color: var(--text); background: #23233a; }
+    .tab-btn.active { color: #fff; background: var(--accent); }
+
+    .userbox {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .signin-btn, .signout-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 0.1s ease;
+    }
+    .signin-btn:hover, .signout-btn:hover { transform: translateY(-1px); }
+
+    /* Page container */
+    .container {
+      max-width: 1100px;
+      margin: 24px auto;
+      padding: 0 20px 40px;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, rgba(255,102,170,0.25), rgba(122,43,235,0.18));
+      border: 1px solid #2a2a44;
+      border-radius: 16px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+    .hero h1 { margin: 0 0 8px; font-size: 2rem; }
+    .hero p { margin: 0; color: var(--muted); }
+    .hero .cta {
+      display: inline-block;
+      margin-top: 12px;
+      background: var(--accent-2);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card);
+      border: 1px solid #2a2a44;
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .card h3 { margin: 0 0 10px; font-size: 1.1rem; }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+    }
+
+    /* Beatmap list */
+    .filters {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .input, .select {
+      background: #14141c;
+      color: var(--text);
+      border: 1px solid #2a2a44;
+      border-radius: 8px;
+      padding: 8px 10px;
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #2a2a44;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .table th, .table td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #2a2a44;
+    }
+    .table thead {
+      background: #181826;
+      color: var(--muted);
+    }
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: #fff;
+    }
+    .pill.osu { background: #ff66aa; }
+    .pill.taiko { background: #f39c12; }
+    .pill.ctb { background: #2ecc71; }
+    .pill.mania { background: #3498db; }
+
+    /* Rules */
+    .rules li {
+      margin-bottom: 8px;
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 10, 14, 0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+    .modal {
+      width: 100%;
+      max-width: 440px;
+      background: var(--card);
+      border: 1px solid #2a2a44;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    }
+    .modal h3 { margin: 0 0 10px; }
+    .modal .row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+    .modal .error { color: var(--bad); font-weight: 700; min-height: 20px; }
+    .modal .actions { display: flex; gap: 8px; justify-content: flex-end; }
+    .btn {
+      border: none;
+      background: #23233a;
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .btn.primary { background: var(--accent); color: #fff; }
+  </style>
+</head>
+<body>
+  <!-- Top nav -->
+  <nav class="nav">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div class="name">Shrine osu! Hub</div>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Main tabs">
+      <button class="tab-btn active" data-tab="home" role="tab" aria-controls="home">Home</button>
+      <button class="tab-btn" data-tab="rules" role="tab" aria-controls="rules">Rules</button>
+      <button class="tab-btn" data-tab="beatmaps" role="tab" aria-controls="beatmaps">Beatmap list</button>
+    </div>
+
+    <div class="userbox">
+      <span id="userStatus">Guest</span>
+      <button class="signin-btn" id="signInBtn">Sign in</button>
+      <button class="signout-btn" id="signOutBtn" style="display: none;">Sign out</button>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Home -->
+    <section id="home" role="tabpanel" aria-label="Home" style="display: block;">
+      <div class="hero">
+        <div>
+          <h1>Welcome to the Shrine</h1>
+          <p>Your osu! tournament portal. Sign in to track stats and upcoming beatmaps.</p>
+          <a href="#beatmaps" class="cta" data-tab-jump="beatmaps">Explore beatmaps</a>
+        </div>
+        <div class="card">
+          <h3>Upcoming Matches</h3>
+          <p class="muted">Dark theme, pink accents, clean tabs, and responsive layout. Built with vanilla HTML/CSS/JS and secure SHA-256 sign-in.</p>
+          <ul>
+            <li><strong>Qualifying:</strong> All participants</li>
+            <li><strong>Qualifying:</strong> Mode, difficulty, search</li>
+            <li><strong>Qualifying:</strong> SHA-256 verification</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top: 18px;" class="grid-3">
+        <div class="card">
+          <h3>Announcements</h3>
+          <p>Check-in begins 30 minutes before matches. Please review the rules and confirm your setup.</p>
+        </div>
+        <div class="card">
+          <h3>Getting started</h3>
+          <p>Sign in to access participant tags, match queues, and moderator controls.</p>
+        </div>
+        <div class="card">
+          <h3>Community</h3>
+          <p>Be kind, be precise, and keep the rhythm. Report issues to staff promptly.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rules -->
+    <section id="rules" role="tabpanel" aria-label="Rules" style="display: none;">
+      <div class="card">
+        <h3>Tournament rules</h3>
+        <ul class="rules">
+          <li><strong>Eligibility:</strong> Registered participants only.</li>
+          <li><strong>Fair play:</strong> No cheating, no unauthorized mods, and no unapproved clients.</li>
+          <li><strong>Respect:</strong> Harassment or toxicity results in disqualification.</li>
+          <li><strong>Timing:</strong> Be on time; late arrivals may forfeit matches.</li>
+          <li><strong>Technical:</strong> Verify your input, audio, and overlays before matches.</li>
+          <li><strong>Skins:</strong> Inquire about approved skins before the tournament starts.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Beatmap list -->
+    <section id="beatmaps" role="tabpanel" aria-label="Beatmap list" style="display: none;">
+      <div class="card">
+        <h3>Beatmap explorer</h3>
+        <div class="filters">
+          <input id="search" class="input" type="text" placeholder="Search by title or artist" />
+          <select id="mode" class="select">
+            <option value="">All modes</option>
+            <option value="osu">osu!</option>
+            <option value="taiko">taiko</option>
+            <option value="ctb">ctb</option>
+            <option value="mania">mania</option>
+          </select>
+          <select id="diff" class="select">
+            <option value="">All difficulties</option>
+            <option value="Easy">Easy</option>
+            <option value="Normal">Normal</option>
+            <option value="Hard">Hard</option>
+            <option value="Insane">Insane</option>
+            <option value="Expert">Expert</option>
+          </select>
+        </div>
+
+        <table class="table" aria-label="Beatmaps table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Artist</th>
+              <th>Mode</th>
+              <th>Difficulty</th>
+              <th>Length</th>
+            </tr>
+          </thead>
+          <tbody id="beatmapTable"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sign-in modal -->
+  <div class="modal-backdrop" id="signInModalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="signInTitle">
+      <h3 id="signInTitle">Sign in</h3>
+      <div class="row">
+        <label for="username">Username</label>
+        <input id="username" class="input" type="text" autocomplete="username" />
+      </div>
+      <div class="row">
+        <label for="password">Password</label>
+        <input id="password" class="input" type="password" autocomplete="current-password" />
+      </div>
+      <div class="error" id="signInError"></div>
+      <div class="actions">
+        <button class="btn" id="cancelSignIn">Cancel</button>
+        <button class="btn primary" id="confirmSignIn">Sign in</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ------------------------------
+       Hardcoded accounts (SHA-256)
+       ------------------------------ */
+    // Utility: hex -> ArrayBuffer
+    function hexToBytes(hex) {
+      const bytes = new Uint8Array(hex.length / 2);
+      for (let i = 0; i < bytes.length; i++) {
+        bytes[i] = parseInt(hex.substr(i * 2, 2), 16);
+      }
+      return bytes.buffer;
+    }
+
+    // Utility: bytes -> hex
+    function bytesToHex(buffer) {
+      const bytes = new Uint8Array(buffer);
+      let hex = '';
+      for (let i = 0; i < bytes.length; i++) {
+        const h = bytes[i].toString(16).padStart(2, '0');
+        hex += h;
+      }
+      return hex;
+    }
+
+    // Hash with Web Crypto: SHA-256(password)
+    async function sha256(text) {
+      const enc = new TextEncoder().encode(text);
+      const digest = await crypto.subtle.digest('SHA-256', enc);
+      return bytesToHex(digest);
+    }
+
+    // Accounts: username -> sha256(password)
+    const ACCOUNTS = {
+      "bakedb": "1d604998daff644540f1390636ee61e88f8d1b2a83e04521e494d48ca272a6bc",
+    };
+
+    /* ------------------------------
+       State & elements
+       ------------------------------ */
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = {
+      home: document.getElementById('home'),
+      rules: document.getElementById('rules'),
+      beatmaps: document.getElementById('beatmaps')
+    };
+    const userStatusEl = document.getElementById('userStatus');
+    const signInBtn = document.getElementById('signInBtn');
+    const signOutBtn = document.getElementById('signOutBtn');
+    const modalBackdrop = document.getElementById('signInModalBackdrop');
+    const confirmSignInBtn = document.getElementById('confirmSignIn');
+    const cancelSignInBtn = document.getElementById('cancelSignIn');
+    const signInErrorEl = document.getElementById('signInError');
+    const usernameEl = document.getElementById('username');
+    const passwordEl = document.getElementById('password');
+
+    let currentUser = null;
+
+    /* ------------------------------
+       Tab navigation
+       ------------------------------ */
+    function showTab(name) {
+      for (const t of tabs) t.classList.toggle('active', t.dataset.tab === name);
+      for (const key of Object.keys(panels)) {
+        panels[key].style.display = key === name ? 'block' : 'none';
+      }
+      // Update hash for deep linking
+      location.hash = name;
+    }
+
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => showTab(btn.dataset.tab));
+    });
+
+    // Allow hero CTA to jump to beatmaps
+    document.querySelectorAll('[data-tab-jump]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        showTab(a.dataset.tabJump);
+      });
+    });
+
+    // Initialize tab by hash
+    const initial = ['home', 'rules', 'beatmaps'].includes(location.hash.slice(1)) ? location.hash.slice(1) : 'home';
+    showTab(initial);
+
+    /* ------------------------------
+       Sign-in modal
+       ------------------------------ */
+    function openModal() {
+      modalBackdrop.style.display = 'flex';
+      modalBackdrop.setAttribute('aria-hidden', 'false');
+      signInErrorEl.textContent = '';
+      usernameEl.value = '';
+      passwordEl.value = '';
+      usernameEl.focus();
+    }
+    function closeModal() {
+      modalBackdrop.style.display = 'none';
+      modalBackdrop.setAttribute('aria-hidden', 'true');
+    }
+
+    signInBtn.addEventListener('click', openModal);
+    cancelSignInBtn.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) closeModal();
+    });
+
+    async function handleSignIn() {
+      signInErrorEl.textContent = '';
+      const user = usernameEl.value.trim();
+      const pass = passwordEl.value;
+
+      if (!user || !pass) {
+        signInErrorEl.textContent = 'Please enter both username and password.';
+        return;
+      }
+
+      if (!ACCOUNTS[user]) {
+        signInErrorEl.textContent = 'Unknown username.';
+        return;
+      }
+
+      const inputHash = await sha256(pass);
+      if (inputHash !== ACCOUNTS[user]) {
+        signInErrorEl.textContent = 'Incorrect password.';
+        return;
+      }
+
+      currentUser = user;
+      userStatusEl.textContent = `Signed in as ${user}`;
+      signInBtn.style.display = 'none';
+      signOutBtn.style.display = 'inline-block';
+      closeModal();
+    }
+
+    confirmSignInBtn.addEventListener('click', handleSignIn);
+    passwordEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleSignIn();
+    });
+
+    signOutBtn.addEventListener('click', () => {
+      currentUser = null;
+      userStatusEl.textContent = 'Guest';
+      signInBtn.style.display = 'inline-block';
+      signOutBtn.style.display = 'none';
+    });
+
+    /* ------------------------------
+       Beatmap data & filters
+       ------------------------------ */
+    const BEATMAPS = [
+      { title: "Freedom Dive", artist: "xi", mode: "osu", diff: "Expert", length: "4:57" },
+      { title: "Blue Zenith", artist: "xi", mode: "osu", diff: "Expert", length: "4:10" },
+      { title: "The Big Black", artist: "The Quick Brown Fox", mode: "osu", diff: "Insane", length: "3:32" },
+      { title: "Bad Apple!!", artist: "nomico", mode: "taiko", diff: "Hard", length: "3:39" },
+      { title: "Lunatic Princess", artist: "ZUN", mode: "ctb", diff: "Insane", length: "2:58" },
+      { title: "Piano Concerto No. 1", artist: "Tchaikovsky", mode: "mania", diff: "Expert", length: "6:12" },
+      { title: "Shiny World", artist: "P*Light", mode: "osu", diff: "Normal", length: "2:45" },
+      { title: "Magnetar", artist: "xi", mode: "mania", diff: "Insane", length: "2:40" },
+      { title: "Ryu☆ - Sakura Mirage", artist: "Ryu☆", mode: "ctb", diff: "Hard", length: "2:20" },
+      { title: "Don’t say “lazy”", artist: "Houkago Tea Time", mode: "taiko", diff: "Normal", length: "1:55" }
+    ];
+
+    const tableBody = document.getElementById('beatmapTable');
+    const searchEl = document.getElementById('search');
+    const modeEl = document.getElementById('mode');
+    const diffEl = document.getElementById('diff');
+
+    function modePill(mode) {
+      const m = mode.toLowerCase();
+      const className = ['osu','taiko','ctb','mania'].includes(m) ? m : 'osu';
+      return `<span class="pill ${className}">${mode}</span>`;
+    }
+
+    function renderTable(rows) {
+      tableBody.innerHTML = rows.map(r => `
+        <tr>
+          <td>${r.title}</td>
+          <td>${r.artist}</td>
+          <td>${modePill(r.mode)}</td>
+          <td>${r.diff}</td>
+          <td>${r.length}</td>
+        </tr>
+      `).join('');
+    }
+
+    function applyFilters() {
+      const q = searchEl.value.trim().toLowerCase();
+      const mode = modeEl.value;
+      const diff = diffEl.value;
+
+      const filtered = BEATMAPS.filter(b => {
+        const matchesQ = !q || b.title.toLowerCase().includes(q) || b.artist.toLowerCase().includes(q);
+        const matchesMode = !mode || b.mode === mode;
+        const matchesDiff = !diff || b.diff === diff;
+        return matchesQ && matchesMode && matchesDiff;
+      });
+
+      renderTable(filtered);
+    }
+
+    searchEl.addEventListener('input', applyFilters);
+    modeEl.addEventListener('change', applyFilters);
+    diffEl.addEventListener('change', applyFilters);
+
+    renderTable(BEATMAPS);
+  </script>
+</body>
+</html>
