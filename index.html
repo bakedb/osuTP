@@ -180,7 +180,8 @@
     .pill.hard { background: #81C784; }     /* green */
     .pill.insane { background: #FBC02D; }   /* yellow */
     .pill.expert { background: #E57373; }   /* red */
-    .pill.expertp { background: #7281FE; }  /* purple */
+    .pill.expertplus { background: #7281FE; }  /* purple */
+    .pill.expertplusplus { background: #000000; color: #FFFF00; }  /* black with yellow text */
 
     /* Rules */
     .rules li {
@@ -327,18 +328,20 @@
           <input id="search" class="input" type="text" placeholder="Search by title or artist" />
           <select id="bracket" class="select">
             <option value="">All brackets</option>
-            <option value="osu">normal</option>
-            <option value="taiko">hard</option>
-            <option value="ctb">insane</option>
-            <option value="mania">expert</option>
+            <option value="normal">normal</option>
+            <option value="hard">hard</option>
+            <option value="insane">insane</option>
+            <option value="expert">expert</option>
+            <option value="expert+">expert+</option>
+            <option value="expert++">expert++</option>
           </select>
-          <select id="diff" class="select">
-            <option value="">All difficulties</option>
-            <option value="Easy">Easy</option>
-            <option value="Normal">Normal</option>
-            <option value="Hard">Hard</option>
-            <option value="Insane">Insane</option>
-            <option value="Expert">Expert</option>
+          <select id="sortBy" class="select">
+            <option value="">Sort by</option>
+            <option value="title">Title</option>
+            <option value="artist">Artist</option>
+            <option value="bracket">Bracket</option>
+            <option value="difficulty">Difficulty</option>
+            <option value="length">Length</option>
           </select>
         </div>
 
@@ -558,30 +561,35 @@
 
       
       { title: "FREEDOM DiVE", artist: "xi", bracket: "expert", diff: "Expert (5.65★)", length: "4:19" },
-      { title: "Scattered Faith (RX)", artist: "Kurokotei", bracket: "expert", diff: "Expert+ (7.37★)", length: "6:46" },
       { title: "Ascension to Heaven", artist: "xi", bracket: "expert", diff: "Expert (5.94★)", length: "2:33" },
       { title: "Cheerleader", artist: "Porter Robinson", bracket: "expert", diff: "Expert (5.60★)", length: "3:53" },
       { title: "Bluenation", artist: "yaseta", bracket: "expert", diff: "Expert (6.47★)", length: "5:19" },
-      { title: "Galaxy Collapse (RX)", artist: "Kurokotei", bracket: "expert", diff: "Expert+ (7.93★)", length: "5:53" },
       { title: "Rap God", artist: "Eminem", bracket: "expert", diff: "Expert (5.93★)", length: "5:34" },
       { title: "The Big Black (HT 0.80x)", artist: "The Quick Brown Fox", bracket: "expert", diff: "Expert (5.56★)", length: "2:46" },
       { title: "The Words I Never Said", artist: "Mage", bracket: "expert", diff: "Expert (5.88★)", length: "5:00" },
       { title: "Fallen Angel (El Poco Maro Remix)", artist: "Mitsunori Ikeda ft. Aimee B", bracket: "expert", diff: "Expert (5.54★)", length: "5:49" },
 
+
+      { title: "Galaxy Collapse (RX)", artist: "Kurokotei", bracket: "expert+", diff: "Expert+ (7.93★)", length: "5:53" },
+      { title: "Scattered Faith (RX)", artist: "Kurokotei", bracket: "expert+", diff: "Expert+ (7.37★)", length: "6:46" },
+      
+
+      { title: "Ascension to Heaven (DT 1.20x)", artist: "xi", bracket: "expert++", diff: "Expert+ (7.26★)", length: "2:08" },
+      { title: "Galaxy Collapse", artist: "Kurokotei", bracket: "expert++", diff: "Expert+ (9.61★)", length: "5:53" },
       
     ];
 
     const tableBody = document.getElementById('beatmapTable');
     const searchEl = document.getElementById('search');
     const bracketEl = document.getElementById('bracket');
-    const diffEl = document.getElementById('diff');
+    const sortByEl = document.getElementById('sortBy');
 
     function bracketPill(bracket) {
       const m = bracket.toLowerCase();
-      const className = ['normal','hard','insane','expert'].includes(m) ? m : 'normal';
+      const className = ['normal','hard','insane','expert','expert+','expert++'].includes(m) ? 
+        (m === 'expert+' ? 'expertplus' : m === 'expert++' ? 'expertplusplus' : m) : 'normal';
       return `<span class="pill ${className}">${bracket}</span>`;
     }
-
 
     function renderTable(rows) {
       tableBody.innerHTML = rows.map(r => `
@@ -598,21 +606,46 @@
     function applyFilters() {
       const q = searchEl.value.trim().toLowerCase();
       const bracket = bracketEl.value;
-      const diff = diffEl.value;
+      const sortBy = sortByEl.value;
 
-      const filtered = BEATMAPS.filter(b => {
+      let filtered = BEATMAPS.filter(b => {
         const matchesQ = !q || b.title.toLowerCase().includes(q) || b.artist.toLowerCase().includes(q);
         const matchesBracket = !bracket || b.bracket === bracket;
-        const matchesDiff = !diff || b.diff === diff;
-        return matchesQ && matchesBracket && matchesDiff;
+        return matchesQ && matchesBracket;
       });
+
+      // Apply sorting
+      if (sortBy) {
+        filtered = [...filtered].sort((a, b) => {
+          switch (sortBy) {
+            case 'title':
+              return a.title.localeCompare(b.title);
+            case 'artist':
+              return a.artist.localeCompare(b.artist);
+            case 'bracket':
+              return a.bracket.localeCompare(b.bracket);
+            case 'difficulty':
+              // Extract star rating for numeric comparison
+              const aStars = parseFloat(a.diff.match(/\([0-9.]+★\)/)?.[1] || '0');
+              const bStars = parseFloat(b.diff.match(/\([0-9.]+★\)/)?.[1] || '0');
+              return aStars - bStars;
+            case 'length':
+              // Convert length to seconds for comparison
+              const aSeconds = a.length.split(':').reduce((acc, val) => acc * 60 + parseInt(val), 0);
+              const bSeconds = b.length.split(':').reduce((acc, val) => acc * 60 + parseInt(val), 0);
+              return aSeconds - bSeconds;
+            default:
+              return 0;
+          }
+        });
+      }
 
       renderTable(filtered);
     }
 
     searchEl.addEventListener('input', applyFilters);
     bracketEl.addEventListener('change', applyFilters);
-    diffEl.addEventListener('change', applyFilters);
+    sortByEl.addEventListener('change', applyFilters);
 
     renderTable(BEATMAPS);
   </script>
