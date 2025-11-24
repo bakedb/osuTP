@@ -32,11 +32,25 @@ def load_beatmaps(file_path):
         messagebox.showerror("Error", f"Failed to load beatmaps: {e}")
         return []
 
+def sort_beatmaps_by_bracket(beatmaps):
+    """Sort beatmaps by bracket in the correct order"""
+    bracket_order = ["normal", "hard", "insane", "expert", "expert+", "expert++"]
+    
+    def get_bracket_sort_key(beatmap):
+        bracket = beatmap["bracket"].lower()
+        if bracket in bracket_order:
+            return bracket_order.index(bracket)
+        return len(bracket_order)  # Put unknown brackets at the end
+    
+    return sorted(beatmaps, key=get_bracket_sort_key)
+
 def save_beatmaps(file_path, beatmaps):
-    """Save beatmaps to JSON file"""
+    """Save beatmaps to JSON file with automatic sorting"""
     try:
+        # Sort beatmaps before saving
+        sorted_beatmaps = sort_beatmaps_by_bracket(beatmaps)
         with open(file_path, 'w', encoding='utf-8') as f:
-            json.dump(beatmaps, f, indent=2, ensure_ascii=False)
+            json.dump(sorted_beatmaps, f, indent=2, ensure_ascii=False)
         return True
     except Exception as e:
         messagebox.showerror("Error", f"Failed to save beatmaps: {e}")
@@ -97,7 +111,7 @@ def add_beatmap_to_json():
         messagebox.showerror("Error", "Failed to save beatmap")
 
 def load_and_display_json():
-    """Load beatmaps.json and display in text widget"""
+    """Load beatmaps.json and display in text widget with automatic sorting"""
     file_path = filedialog.askopenfilename(
         title="Select beatmaps.json file",
         filetypes=[("JSON files", "*.json"), ("All files", "*.*")]
@@ -106,14 +120,16 @@ def load_and_display_json():
     if file_path:
         beatmaps = load_beatmaps(file_path)
         if beatmaps:
+            # Sort beatmaps before displaying
+            sorted_beatmaps = sort_beatmaps_by_bracket(beatmaps)
             # Display formatted JSON in output text
-            formatted_json = json.dumps(beatmaps, indent=2, ensure_ascii=False)
+            formatted_json = json.dumps(sorted_beatmaps, indent=2, ensure_ascii=False)
             output_text.delete("1.0", tk.END)
             output_text.insert(tk.END, formatted_json)
-            messagebox.showinfo("Success", f"Loaded {len(beatmaps)} beatmaps")
+            messagebox.showinfo("Success", f"Loaded and sorted {len(beatmaps)} beatmaps")
 
 def save_current_as_json():
-    """Save current beatmaps.json to a new file"""
+    """Save current beatmaps.json to a new file with automatic sorting"""
     beatmaps = load_beatmaps("beatmaps.json")
     if not beatmaps:
         messagebox.showwarning("Warning", "No beatmaps found in beatmaps.json")
@@ -127,7 +143,7 @@ def save_current_as_json():
     
     if file_path:
         if save_beatmaps(file_path, beatmaps):
-            messagebox.showinfo("Success", f"Saved {len(beatmaps)} beatmaps to {file_path}")
+            messagebox.showinfo("Success", f"Saved and sorted {len(beatmaps)} beatmaps to {file_path}")
 
 def format_song():
     title = title_entry.get()
@@ -145,6 +161,11 @@ def format_song():
     formatted = f'{{ title: "{title}", artist: "{artist}", bracket: "{mode}", diff: "{diff_formatted}", length: "{length}" }},'
     output_text.delete("1.0", tk.END)
     output_text.insert(tk.END, formatted)
+
+def format_scaled_score(score):
+    """Format scaled score with apostrophe separators"""
+    scaled_score = int(score)
+    return f"{scaled_score:,}".replace(",", "'")
 
 def calculate_score():
     try:
@@ -166,7 +187,11 @@ def calculate_score():
         }
         score *= multipliers.get(mod, 1.0)
         
-        score_output.config(text=f"Score: {score:.2f}")
+        # Calculate scaled score (8020 = 1,000,000 ratio)
+        scaled_score = (score / 8020.0) * 1000000
+        formatted_scaled = format_scaled_score(scaled_score)
+        
+        score_output.config(text=f"Score: {score:.2f} | Scaled: {formatted_scaled}")
     except Exception as e:
         score_output.config(text=f"Error: {e}")
 
