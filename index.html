@@ -221,6 +221,140 @@
       font-weight: 700;
     }
     .btn.primary { background: var(--accent); color: #fff; }
+
+    /* Tournament styles */
+    .bracket-round {
+      margin-bottom: 24px;
+    }
+    .bracket-round h4 {
+      margin: 0 0 16px;
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+    .matches {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .match {
+      background: #1a1a24;
+      border: 1px solid #2a2a44;
+      border-radius: 8px;
+      padding: 16px;
+      position: relative;
+    }
+    .match.live {
+      border-color: var(--accent);
+      box-shadow: 0 0 12px rgba(255, 102, 170, 0.3);
+    }
+    .match.completed {
+      opacity: 0.8;
+    }
+    .players {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .player {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px;
+      background: #14141c;
+      border-radius: 6px;
+    }
+    .player.winner {
+      background: rgba(255, 102, 170, 0.1);
+      border: 1px solid var(--accent);
+    }
+    .player .name {
+      font-weight: 600;
+    }
+    .player .team {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .player .score {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .vs {
+      text-align: center;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .match .status {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .live-matches {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 16px;
+    }
+    .live-match {
+      background: linear-gradient(135deg, rgba(255,102,170,0.1), rgba(122,43,235,0.05));
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+    }
+    .match-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .live-indicator {
+      background: #ff4444;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    .round {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .current-map {
+      margin-top: 12px;
+      padding: 8px;
+      background: #14141c;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    .recent-results {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .result {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background: #1a1a24;
+      border: 1px solid #2a2a44;
+      border-radius: 6px;
+    }
+    .result .score {
+      font-weight: 600;
+    }
+    .result .time {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
@@ -233,6 +367,8 @@
 
     <div class="tabs" role="tablist" aria-label="Main tabs">
       <button class="tab-btn active" data-tab="home" role="tab" aria-controls="home">Home</button>
+      <button class="tab-btn" data-tab="brackets" role="tab" aria-controls="brackets">Brackets</button>
+      <button class="tab-btn" data-tab="live" role="tab" aria-controls="live">Live Scores</button>
       <button class="tab-btn" data-tab="rules" role="tab" aria-controls="rules">Rules</button>
       <button class="tab-btn" data-tab="beatmaps" role="tab" aria-controls="beatmaps">Beatmap list</button>
     </div>
@@ -277,6 +413,26 @@
           <h3>Community</h3>
           <p>Be kind, be precise, and keep the rhythm. Report issues to staff promptly.</p>
         </div>
+      </div>
+    </section>
+
+    <!-- Brackets -->
+    <section id="brackets" role="tabpanel" aria-label="Brackets" style="display: none;">
+      <div class="card">
+        <h3>Tournament Brackets</h3>
+        <div id="bracketContainer"></div>
+      </div>
+    </section>
+
+    <!-- Live Scores -->
+    <section id="live" role="tabpanel" aria-label="Live Scores" style="display: none;">
+      <div class="card">
+        <h3>Live Matches</h3>
+        <div id="liveMatchesContainer"></div>
+      </div>
+      <div style="margin-top: 16px;" class="card">
+        <h3>Recent Results</h3>
+        <div id="recentResultsContainer"></div>
       </div>
     </section>
 
@@ -423,6 +579,8 @@
     const tabs = document.querySelectorAll('.tab-btn');
     const panels = {
       home: document.getElementById('home'),
+      brackets: document.getElementById('brackets'),
+      live: document.getElementById('live'),
       rules: document.getElementById('rules'),
       beatmaps: document.getElementById('beatmaps')
     };
@@ -463,7 +621,7 @@
     });
 
     // Initialize tab by hash
-    const initial = ['home', 'rules', 'beatmaps'].includes(location.hash.slice(1)) ? location.hash.slice(1) : 'home';
+    const initial = ['home', 'brackets', 'live', 'rules', 'beatmaps'].includes(location.hash.slice(1)) ? location.hash.slice(1) : 'home';
     showTab(initial);
 
     /* ------------------------------
@@ -527,6 +685,158 @@
       signInBtn.style.display = 'inline-block';
       signOutBtn.style.display = 'none';
     });
+
+    /* ------------------------------
+       Tournament data loading
+       ------------------------------ */
+    let tournamentData = null;
+
+    // Load tournament data from JSON file
+    async function loadTournamentData() {
+      try {
+        const response = await fetch('tournament-data.json');
+        tournamentData = await response.json();
+        updateTournamentDisplays();
+      } catch (error) {
+        console.error('Failed to load tournament data:', error);
+        // Use fallback data for demo
+        tournamentData = {
+          tournament: { name: "osu! Tournament 2025", status: "ongoing", currentRound: "semifinals" },
+          participants: [],
+          brackets: { semifinals: [], finals: [], thirdPlace: [] },
+          liveMatches: [],
+          recentResults: []
+        };
+        updateTournamentDisplays();
+      }
+    }
+
+    // Update all tournament displays
+    function updateTournamentDisplays() {
+      renderBrackets();
+      renderLiveMatches();
+      renderRecentResults();
+    }
+
+    // Render tournament brackets
+    function renderBrackets() {
+      const container = document.getElementById('bracketContainer');
+      if (!tournamentData || !tournamentData.brackets) {
+        container.innerHTML = '<p>No bracket data available</p>';
+        return;
+      }
+
+      let html = '';
+      
+      // Render each round
+      Object.keys(tournamentData.brackets).forEach(round => {
+        const matches = tournamentData.brackets[round];
+        if (matches.length === 0) return;
+
+        html += `<div class="bracket-round">
+          <h4>${round.charAt(0).toUpperCase() + round.slice(1)}</h4>
+          <div class="matches">`;
+
+        matches.forEach(match => {
+          const p1 = match.player1;
+          const p2 = match.player2;
+          const winner = match.winner;
+          const status = match.status;
+          
+          html += `<div class="match ${status}">
+            <div class="players">
+              <div class="player ${winner === p1.id ? 'winner' : ''}">
+                <span class="name">${p1.name}</span>
+                <span class="team">${p1.team}</span>
+                <span class="score">${match.score.player1}</span>
+              </div>
+              <div class="vs">VS</div>
+              <div class="player ${winner === p2.id ? 'winner' : ''}">
+                <span class="name">${p2.name}</span>
+                <span class="team">${p2.team}</span>
+                <span class="score">${match.score.player2}</span>
+              </div>
+            </div>
+            <div class="status">${status}</div>
+          </div>`;
+        });
+
+        html += `</div></div>`;
+      });
+
+      container.innerHTML = html;
+    }
+
+    // Render live matches
+    function renderLiveMatches() {
+      const container = document.getElementById('liveMatchesContainer');
+      if (!tournamentData || !tournamentData.liveMatches || tournamentData.liveMatches.length === 0) {
+        container.innerHTML = '<p>No live matches currently</p>';
+        return;
+      }
+
+      let html = '<div class="live-matches">';
+      tournamentData.liveMatches.forEach(match => {
+        const p1 = match.player1;
+        const p2 = match.player2;
+        
+        html += `<div class="live-match">
+          <div class="match-header">
+            <span class="live-indicator">🔴 LIVE</span>
+            <span class="round">${match.currentMap}/7</span>
+          </div>
+          <div class="players">
+            <div class="player">
+              <span class="name">${p1.name}</span>
+              <span class="team">${p1.team}</span>
+              <span class="score">${match.score.player1}</span>
+            </div>
+            <div class="vs">VS</div>
+            <div class="player">
+              <span class="name">${p2.name}</span>
+              <span class="team">${p2.team}</span>
+              <span class="score">${match.score.player2}</span>
+            </div>
+          </div>
+          <div class="current-map">
+            <strong>Current:</strong> ${match.maps[match.currentMap - 1]?.title || 'Unknown'}
+          </div>
+        </div>`;
+      });
+      html += '</div>';
+      
+      container.innerHTML = html;
+    }
+
+    // Render recent results
+    function renderRecentResults() {
+      const container = document.getElementById('recentResultsContainer');
+      if (!tournamentData || !tournamentData.recentResults || tournamentData.recentResults.length === 0) {
+        container.innerHTML = '<p>No recent results</p>';
+        return;
+      }
+
+      let html = '<div class="recent-results">';
+      tournamentData.recentResults.forEach(result => {
+        const date = new Date(result.timestamp).toLocaleString();
+        html += `<div class="result">
+          <div class="score">${result.winner} defeated ${result.loser} ${result.score}</div>
+          <div class="time">${date}</div>
+        </div>`;
+      });
+      html += '</div>';
+      
+      container.innerHTML = html;
+    }
+
+    // Auto-refresh tournament data every 30 seconds
+    function startTournamentUpdates() {
+      loadTournamentData();
+      setInterval(loadTournamentData, 30000); // Refresh every 30 seconds
+    }
+
+    // Start tournament updates when page loads
+    startTournamentUpdates();
 
     /* ------------------------------
        Beatmap data & filters
