@@ -385,33 +385,119 @@
     <section id="home" role="tabpanel" aria-label="Home" style="display: block;">
       <div class="hero">
         <div>
-          <h1>Welcome!</h1>
-          <p>Welcome to your osu! tournament portal. Sign in to track stats and upcoming beatmaps.</p>
+          <h1>Tournament System Guide</h1>
+          <p>Welcome to your osu! tournament portal. This system uses a bracket-based structure with qualifiers to determine player placement and progression through different difficulty levels.</p>
           <a href="#beatmaps" class="cta" data-tab-jump="beatmaps">Explore beatmaps</a>
         </div>
         <div class="card">
-          <h3>Upcoming Matches</h3>
-          <p class="muted">All rounds of matches are listed here.</p>
+          <h3>Tournament Phases</h3>
+          <p class="muted">Progressive tournament structure:</p>
           <ul>
-            <li><strong>Qualifying:</strong> All participants</li>
-            <li><strong>Semifinals:</strong> Remaining participants (should be about half)</li>
-            <li><strong>Finals:</strong> Last 2 remaining teams/players</li>
+            <li><strong>Phase 1:</strong> Qualifiers - Determine initial placement</li>
+            <li><strong>Phase 2:</strong> Bracket Play - Head-to-head competition</li>
+            <li><strong>Phase 3:</strong> Finals - Championship matches</li>
           </ul>
         </div>
       </div>
 
       <div style="margin-top: 18px;" class="grid-3">
         <div class="card">
-          <h3>Announcements</h3>
-          <p>Check-in begins 30 minutes before matches. Please review the rules and confirm your setup.</p>
+          <h3>🎯 Qualification Process</h3>
+          <p><strong>Map Selection:</strong> Choose one map from each bracket</p>
+          <p><strong>Progression:</strong> Pass maps to advance to next bracket</p>
+          <p><strong>Assignment:</strong> Placed based on highest completed bracket</p>
         </div>
         <div class="card">
-          <h3>Getting started</h3>
-          <p>Sign in to access participant tags, match queues, and admin controls.</p>
+          <h3>🏆 Difficulty Brackets</h3>
+          <p><strong>Normal:</strong> Entry-level for beginners</p>
+          <p><strong>Hard:</strong> Intermediate difficulty</p>
+          <p><strong>Insane:</strong> Advanced players</p>
+          <p><strong>Expert:</strong> High-level competition</p>
+          <p><strong>Expert+:</strong> Very high difficulty</p>
+          <p><strong>Expert++:</strong> Maximum challenge</p>
         </div>
         <div class="card">
-          <h3>Community</h3>
-          <p>Be kind, be precise, and keep the rhythm. Report issues to staff promptly.</p>
+          <h3>⚡ Match Format</h3>
+          <p><strong>Best of 7:</strong> First to 4 map wins</p>
+          <p><strong>Map Pool:</strong> 7 maps per match</p>
+          <p><strong>Tiebreaker:</strong> Final map if 3-3</p>
+          <p><strong>Scoring:</strong> Accuracy + combo based</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 18px;" class="card">
+        <h3>📊 Tournament Features</h3>
+        <div class="grid-3">
+          <div>
+            <h4>Live Updates</h4>
+            <p>Real-time score updates and match progress with automatic refresh every 30 seconds.</p>
+          </div>
+          <div>
+            <h4>Bracket Visualization</h4>
+            <p>Interactive tournament tree showing player progression and match results.</p>
+          </div>
+          <div>
+            <h4>Beatmap Explorer</h4>
+            <p>Search, filter, and sort all tournament beatmaps by difficulty and length.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 18px;" class="card">
+        <h3>🎮 Getting Started</h3>
+        <div class="grid-2">
+          <div>
+            <h4>For Participants</h4>
+            <ul>
+              <li>Sign in to access participant features</li>
+              <li>Review qualification requirements</li>
+              <li>Check match schedules and brackets</li>
+              <li>Practice with tournament beatmaps</li>
+              <li>Ensure technical setup is ready</li>
+            </ul>
+          </div>
+          <div>
+            <h4>For Organizers</h4>
+            <ul>
+              <li>Use main.py to manage beatmaps</li>
+              <li>Update tournament-data.json for live scores</li>
+              <li>Monitor bracket assignments</li>
+              <li>Track player progression</li>
+              <li>Maintain match schedules</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 18px;" class="card">
+        <h3>📈 Scoring System</h3>
+        <p><strong>Base Formula:</strong> ((0.8 × accuracy) × 100) + ((0.2 × √(combo/max_combo)) × 100)</p>
+        <p><strong>Mod Multipliers:</strong> EZ (0.50x), HR (1.12x), HD (1.05x), FL (1.10x)</p>
+        <p><strong>Dual Display:</strong> Original score + scaled score (1'000'000 max)</p>
+        <p class="muted">Use the score calculator in main.py to estimate match performance.</p>
+      </div>
+
+      <div style="margin-top: 18px;" class="card">
+        <h3>🔧 Technical Information</h3>
+        <div class="grid-2">
+          <div>
+            <h4>File Structure</h4>
+            <ul>
+              <li><strong>index.html:</strong> Main tournament website</li>
+              <li><strong>beatmaps.json:</strong> Beatmap database</li>
+              <li><strong>tournament-data.json:</strong> Live tournament data</li>
+              <li><strong>main.py:</strong> Management tools</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Data Flow</h4>
+            <ul>
+              <li>main.py updates JSON files</li>
+              <li>JSON files store all data</li>
+              <li>Website reads and displays data</li>
+              <li>Auto-refresh keeps everything current</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -453,7 +539,6 @@
         <ol class="rules">
           <li><strong>Check ruleset (if first round)</strong> Check if the skin is valid, if the maps are unmodified and updated, and the correct client is being used.</li>
           <li><strong>Check mods</strong> Enable No Fail and any other mods specified on the beatmap list.</li>
-          <li><strong>Enable RD</strong> Upon one or both participant's request, enable Random with default angle sharpness.</li>
           <li><strong>Verify scores</strong> Use the scoring algorithm below to determine the score of the play and compare against the other player.</li>
         </ol>
         <h3>Scoring</h3>
