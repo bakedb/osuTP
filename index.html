@@ -34,6 +34,61 @@
       --glass-border: rgba(255, 255, 255, 0.18);
     }
     
+    /* Windows 9x theme variables */
+    [data-theme="windows-9x"] {
+      --bg: #008080;
+      --bg-elev: #c0c0c0;
+      --card: #c0c0c0;
+      --text: #000000;
+      --muted: #808080;
+      --accent: #000080;
+      --accent-2: #800080;
+      --accent-3: #008000;
+      --accent-4: #800000;
+      --ok: #008000;
+      --bad: #800000;
+      --border-light: #ffffff;
+      --border-dark: #000000;
+      --border-dim: #808080;
+    }
+    
+    /* Windows 10/11 theme variables */
+    [data-theme="windows-10"] {
+      --bg: #f3f3f3;
+      --bg-elev: #ffffff;
+      --card: #ffffff;
+      --text: #000000;
+      --muted: #616161;
+      --accent: #0078d4;
+      --accent-2: #106ebe;
+      --accent-3: #005a9e;
+      --accent-4: #404040;
+      --ok: #107c10;
+      --bad: #d13438;
+      --glass: rgba(255, 255, 255, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.9);
+      --aero-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    }
+    
+    /* macOS X theme variables */
+    [data-theme="macosx"] {
+      --bg: #e6e6e6;
+      --bg-elev: #f7f7f7;
+      --card: #ffffff;
+      --text: #000000;
+      --muted: #424242;
+      --accent: #0066cc;
+      --accent-2: #0052a3;
+      --accent-3: #003d7a;
+      --accent-4: #002654;
+      --ok: #2e7d32;
+      --bad: #d32f2f;
+      --brushed-metal: linear-gradient(180deg, #d4d4d4 0%, #e8e8e8 20%, #f0f0f0 40%, #e8e8e8 60%, #d4d4d4 100%);
+      --lickable-gradient: linear-gradient(180deg, #ffffff 0%, #f0f0f0 50%, #e0e0e0 100%);
+      --shadow-outer: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      --shadow-inner: inset 0 1px 3px rgba(0, 0, 0, 0.2), inset 0 -1px 0 rgba(255, 255, 255, 0.8);
+    }
+    
     /* Tab-specific color variations */
     [data-theme="frutiger-aero"] body.tab-home {
       --accent: #00b4d8; /* pure blue */
@@ -76,6 +131,92 @@
       --accent-3: #47d391;
       --accent-4: #89bab8;
     }
+    
+    /* Windows 10/11 tab-specific colors */
+    [data-theme="windows-10"] body.tab-home {
+      --accent: #0078d4; /* Windows blue */
+      --accent-2: #106ebe;
+      --accent-3: #005a9e;
+      --accent-4: #404040;
+    }
+    
+    [data-theme="windows-10"] body.tab-brackets {
+      --accent: #107c10; /* Windows green */
+      --accent-2: #0e6e0e;
+      --accent-3: #5cb85c;
+      --accent-4: #a3d5a3;
+    }
+    
+    [data-theme="windows-10"] body.tab-live {
+      --accent: #d13438; /* Windows red */
+      --accent-2: #ff8c00;
+      --accent-3: #ffa500;
+      --accent-4: #ffcc80;
+    }
+    
+    [data-theme="windows-10"] body.tab-rules {
+      --accent: #5c2d91; /* Windows purple */
+      --accent-2: #8a4db8;
+      --accent-3: #b373db;
+      --accent-4: #d4b3e6;
+    }
+    
+    [data-theme="windows-10"] body.tab-beatmaps {
+      --accent: #106ebe; /* Windows light blue */
+      --accent-2: #004578;
+      --accent-3: #66b3ff;
+      --accent-4: #b3d9ff;
+    }
+    
+    [data-theme="windows-10"] body.tab-tools {
+      --accent: #ff8c00; /* Windows orange */
+      --accent-2: #d13438;
+      --accent-3: #ffa500;
+      --accent-4: #ffcc80;
+    }
+    
+    /* macOS X tab-specific colors */
+    [data-theme="macosx"] body.tab-home {
+      --accent: #0066cc; /* macOS blue */
+      --accent-2: #0052a3;
+      --accent-3: #003d7a;
+      --accent-4: #002654;
+    }
+    
+    [data-theme="macosx"] body.tab-brackets {
+      --accent: #2e7d32; /* macOS green */
+      --accent-2: #228b22;
+      --accent-3: #32cd32;
+      --accent-4: #90ee90;
+    }
+    
+    [data-theme="macosx"] body.tab-live {
+      --accent: #d32f2f; /* macOS red */
+      --accent-2: #ff0000;
+      --accent-3: #cd5c5c;
+      --accent-4: #f08080;
+    }
+    
+    [data-theme="macosx"] body.tab-rules {
+      --accent: #5c2d91; /* macOS purple */
+      --accent-2: #8a4db8;
+      --accent-3: #b373db;
+      --accent-4: #d4b3e6;
+    }
+    
+    [data-theme="macosx"] body.tab-beatmaps {
+      --accent: #0052a3; /* macOS light blue */
+      --accent-2: #003d7a;
+      --accent-3: #66b3ff;
+      --accent-4: #b3d9ff;
+    }
+    
+    [data-theme="macosx"] body.tab-tools {
+      --accent: #ff8c00; /* macOS orange */
+      --accent-2: #d32f2f;
+      --accent-3: #ffa500;
+      --accent-4: #ffcc80;
+    }
 
     html, body {
       margin: 0;
@@ -108,6 +249,59 @@
       pointer-events: none;
       z-index: -1;
     }
+    
+    /* Windows 9x background styles */
+    [data-theme="windows-9x"] html, [data-theme="windows-9x"] body {
+      background: var(--bg);
+      font-family: 'MS Sans Serif', 'Microsoft Sans Serif', 'Segoe UI', Tahoma, Arial, sans-serif;
+      font-size: 11px;
+    }
+    
+    /* Windows 10/11 background styles */
+    [data-theme="windows-10"] html, [data-theme="windows-10"] body {
+      background: linear-gradient(135deg, #f3f3f3 0%, #ffffff 50%, #e8e8e8 100%);
+      font-family: 'Segoe UI', 'Microsoft Sans Serif', Tahoma, Arial, sans-serif;
+    }
+    
+    [data-theme="windows-10"] body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 30% 70%, rgba(0, 120, 215, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 70% 30%, rgba(16, 124, 16, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    /* macOS X background styles */
+    [data-theme="macosx"] html, [data-theme="macosx"] body {
+      background: var(--brushed-metal);
+      font-family: 'Lucida Grande', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 13px;
+    }
+    
+    [data-theme="macosx"] body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 2px,
+          rgba(255, 255, 255, 0.1) 2px,
+          rgba(255, 255, 255, 0.1) 4px
+        );
+      pointer-events: none;
+      z-index: -1;
+    }
 
     /* Top nav */
     .nav {
@@ -135,6 +329,60 @@
         0 8px 32px rgba(0, 180, 216, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.6);
     }
+    
+    /* Windows 9x nav styles */
+    [data-theme="windows-9x"] .nav {
+      background: var(--bg-elev);
+      border: 2px solid var(--border-dark);
+      border-bottom: 2px solid var(--border-dim);
+      border-radius: 0;
+      box-shadow: 
+        inset -1px -1px 0 var(--border-light),
+        inset 1px 1px 0 var(--border-light);
+    }
+    
+    /* Windows 10/11 nav styles */
+    [data-theme="windows-10"] .nav {
+      background: var(--aero-gradient);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 0 0 8px 8px;
+      box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.6);
+    }
+    
+    /* macOS X nav styles */
+    [data-theme="macosx"] .nav {
+      background: var(--brushed-metal);
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+      border-radius: 0;
+      box-shadow: var(--shadow-outer);
+      position: relative;
+    }
+    
+    [data-theme="macosx"] .nav::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 2px,
+          rgba(255, 255, 255, 0.1) 2px,
+          rgba(255, 255, 255, 0.1) 4px
+        );
+      pointer-events: none;
+      z-index: 1;
+    }
     .brand {
       display: flex;
       align-items: center;
@@ -159,6 +407,53 @@
         inset 0 -2px 4px rgba(0, 119, 182, 0.3),
         inset 0 2px 4px rgba(255, 255, 255, 0.8);
       border: 2px solid rgba(255, 255, 255, 0.8);
+    }
+    
+    /* Windows 9x logo styles */
+    [data-theme="windows-9x"] .brand .logo {
+      background: var(--accent);
+      border: 2px solid var(--border-dark);
+      box-shadow: 
+        inset -1px -1px 0 var(--border-light),
+        inset 1px 1px 0 var(--border-light);
+    }
+    
+    /* Windows 10/11 logo styles */
+    [data-theme="windows-10"] .brand .logo {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 
+        0 2px 8px rgba(0, 90, 158, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.4);
+    }
+    
+    /* macOS X logo styles */
+    [data-theme="macosx"] .brand .logo {
+      background: var(--brushed-metal);
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      border-radius: 6px;
+      box-shadow: var(--shadow-outer);
+      position: relative;
+    }
+    
+    [data-theme="macosx"] .brand .logo::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 2px,
+          rgba(255, 255, 255, 0.2) 2px,
+          rgba(255, 255, 255, 0.2) 4px
+        );
+      border-radius: 6px;
+      pointer-events: none;
     }
     .brand .name {
       color: var(--text);
@@ -209,6 +504,88 @@
         0 2px 4px rgba(0, 119, 182, 0.3);
       border-color: rgba(255, 255, 255, 0.3);
     }
+    
+    /* Windows 9x tab styles */
+    [data-theme="windows-9x"] .tab-btn {
+      background: var(--bg-elev);
+      border: 2px solid var(--border-dark);
+      border-radius: 0;
+      color: var(--text);
+      font-weight: 400;
+      box-shadow: 
+        inset -1px -1px 0 var(--border-light),
+        inset 1px 1px 0 var(--border-light);
+    }
+    [data-theme="windows-9x"] .tab-btn:hover { 
+      background: var(--accent);
+      color: #ffffff;
+    }
+    [data-theme="windows-9x"] .tab-btn.active { 
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: 
+        inset -1px -1px 0 var(--border-light),
+        inset 1px 1px 0 var(--border-light);
+    }
+    
+    /* Windows 10/11 tab styles */
+    [data-theme="windows-10"] .tab-btn {
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 6px;
+      color: var(--text);
+      font-weight: 500;
+      box-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+    [data-theme="windows-10"] .tab-btn:hover { 
+      background: var(--aero-gradient);
+      color: var(--accent-2);
+      transform: translateY(-1px);
+      box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+    [data-theme="windows-10"] .tab-btn.active { 
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #ffffff;
+      box-shadow: 
+        0 4px 12px rgba(0, 90, 158, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+    
+    /* macOS X tab styles */
+    [data-theme="macosx"] .tab-btn {
+      background: var(--lickable-gradient);
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 12px;
+      box-shadow: var(--shadow-outer);
+      position: relative;
+    }
+    
+    [data-theme="macosx"] .tab-btn:hover { 
+      background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 50%, #e5e5e5 100%);
+      color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+    
+    [data-theme="macosx"] .tab-btn.active { 
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: var(--shadow-inner);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
 
     .userbox {
       display: flex;
@@ -217,7 +594,7 @@
       color: var(--muted);
       font-weight: 600;
     }
-    .signin-btn, .signout-btn {
+    .signin-btn, .signout-btn, .register-btn {
       background: var(--accent);
       color: #fff;
       border: none;
@@ -227,10 +604,10 @@
       font-weight: 700;
       transition: transform 0.1s ease;
     }
-    .signin-btn:hover, .signout-btn:hover { transform: translateY(-1px); }
+    .signin-btn:hover, .signout-btn:hover, .register-btn:hover { transform: translateY(-1px); }
     
     /* Frutiger Aero button styles */
-    [data-theme="frutiger-aero"] .signin-btn, [data-theme="frutiger-aero"] .signout-btn {
+    [data-theme="frutiger-aero"] .signin-btn, [data-theme="frutiger-aero"] .signout-btn, [data-theme="frutiger-aero"] .register-btn {
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       border-radius: 12px;
       padding: 8px 12px;
@@ -239,11 +616,98 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
-    [data-theme="frutiger-aero"] .signin-btn:hover, [data-theme="frutiger-aero"] .signout-btn:hover { 
+    [data-theme="frutiger-aero"] .signin-btn:hover, [data-theme="frutiger-aero"] .signout-btn:hover, [data-theme="frutiger-aero"] .register-btn:hover { 
       transform: translateY(-2px);
       box-shadow: 
         0 6px 20px rgba(0, 180, 216, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+    
+    /* Windows 9x button styles */
+    [data-theme="windows-9x"] .signin-btn, [data-theme="windows-9x"] .signout-btn, [data-theme="windows-9x"] .register-btn {
+      background: var(--bg-elev);
+      border: 2px solid var(--border-dark);
+      border-radius: 0;
+      color: var(--text);
+      font-weight: 400;
+      box-shadow: 
+        inset -1px -1px 0 var(--border-light),
+        inset 1px 1px 0 var(--border-light);
+    }
+    [data-theme="windows-9x"] .signin-btn:hover, [data-theme="windows-9x"] .signout-btn:hover, [data-theme="windows-9x"] .register-btn:hover { 
+      background: var(--accent);
+      color: #ffffff;
+      transform: none;
+    }
+    
+    /* Windows 7/Vista button styles */
+    [data-theme="windows-7"] .signin-btn, [data-theme="windows-7"] .signout-btn, [data-theme="windows-7"] .register-btn {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 6px;
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 
+        0 2px 8px rgba(0, 90, 158, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+    }
+    [data-theme="windows-7"] .signin-btn:hover, [data-theme="windows-7"] .signout-btn:hover, [data-theme="windows-7"] .register-btn:hover { 
+      background: linear-gradient(135deg, var(--accent-2), var(--accent));
+      transform: translateY(-1px);
+      box-shadow: 
+        0 4px 12px rgba(0, 90, 158, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.4);
+    }
+
+    /* Windows 10/11 button styles */
+    [data-theme="windows-10"] .signin-btn, [data-theme="windows-10"] .signout-btn, [data-theme="windows-10"] .register-btn {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 6px;
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 
+        0 2px 8px rgba(0, 90, 158, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+    }
+    [data-theme="windows-10"] .signin-btn:hover, [data-theme="windows-10"] .signout-btn:hover, [data-theme="windows-10"] .register-btn:hover { 
+      background: linear-gradient(135deg, var(--accent-2), var(--accent));
+      transform: translateY(-1px);
+      box-shadow: 
+        0 4px 12px rgba(0, 90, 158, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.4);
+    }
+    
+    /* macOS X button styles */
+    [data-theme="macosx"] .signin-btn, [data-theme="macosx"] .signout-btn, [data-theme="macosx"] .register-btn {
+      background: var(--lickable-gradient);
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 12px;
+      box-shadow: var(--shadow-outer);
+      position: relative;
+    }
+    
+    [data-theme="macosx"] .signin-btn:hover, [data-theme="macosx"] .signout-btn:hover, [data-theme="macosx"] .register-btn:hover { 
+      background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 50%, #e5e5e5 100%);
+      color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+    
+    [data-theme="macosx"] .signin-btn:active, [data-theme="macosx"] .signout-btn:active, [data-theme="macosx"] .register-btn:active {
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: var(--shadow-inner);
+      transform: translateY(0);
     }
 
     /* Page container */
@@ -328,6 +792,156 @@
         0 8px 28px rgba(0, 180, 216, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.4);
     }
+    
+    /* Windows 9x hero styles */
+    [data-theme="windows-9x"] .hero {
+      background: var(--bg-elev);
+      border: 2px solid var(--border-dark);
+      border-radius: 0;
+      padding: 16px;
+      box-shadow: 
+        inset -1px -1px 0 var(--border-light),
+        inset 1px 1px 0 var(--border-light);
+    }
+    [data-theme="windows-9x"] .hero .cta {
+      background: var(--bg-elev);
+      border: 2px solid var(--border-dark);
+      border-radius: 0;
+      color: var(--text);
+      font-weight: 400;
+      box-shadow: 
+        inset -1px -1px 0 var(--border-light),
+        inset 1px 1px 0 var(--border-light);
+    }
+    [data-theme="windows-9x"] .hero .cta:hover {
+      background: var(--accent);
+      color: #ffffff;
+      transform: none;
+    }
+    
+    /* Windows 7/Vista hero styles */
+    [data-theme="windows-7"] .hero {
+      background: var(--aero-gradient);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.6);
+    }
+    [data-theme="windows-7"] .hero .cta {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 6px;
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 
+        0 2px 8px rgba(0, 90, 158, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+    }
+    [data-theme="windows-7"] .hero .cta:hover {
+      background: linear-gradient(135deg, var(--accent-2), var(--accent));
+      transform: translateY(-1px);
+      box-shadow: 
+        0 4px 12px rgba(0, 90, 158, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.4);
+    }
+    
+    /* Windows 10/11 hero styles */
+    [data-theme="windows-10"] .hero {
+      background: var(--aero-gradient);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.6);
+    }
+    [data-theme="windows-10"] .hero .cta {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 6px;
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 
+        0 2px 8px rgba(0, 90, 158, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+    }
+    [data-theme="windows-10"] .hero .cta:hover {
+      background: linear-gradient(135deg, var(--accent-2), var(--accent));
+      transform: translateY(-1px);
+      box-shadow: 
+        0 4px 12px rgba(0, 90, 158, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.4);
+    }
+    
+    /* macOS X hero styles */
+    [data-theme="macosx"] .hero {
+      background: var(--brushed-metal);
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: var(--shadow-outer);
+      position: relative;
+    }
+    
+    [data-theme="macosx"] .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 2px,
+          rgba(255, 255, 255, 0.1) 2px,
+          rgba(255, 255, 255, 0.1) 4px
+        );
+      border-radius: 8px;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    [data-theme="macosx"] .hero .cta {
+      background: var(--lickable-gradient);
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 12px;
+      box-shadow: var(--shadow-outer);
+      position: relative;
+      z-index: 2;
+    }
+    
+    [data-theme="macosx"] .hero .cta:hover {
+      background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 50%, #e5e5e5 100%);
+      color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+    
+    [data-theme="macosx"] .hero .cta:active {
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: var(--shadow-inner);
+      transform: translateY(0);
+    }
 
     /* Cards */
     .card {
@@ -362,6 +976,41 @@
       right: 0;
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    }
+    
+    /* Windows 9x card styles */
+    [data-theme="windows-9x"] .card {
+      background: var(--bg-elev);
+      border: 2px solid var(--border-dark);
+      border-radius: 0;
+      padding: 12px;
+      box-shadow: 
+        inset -1px -1px 0 var(--border-light),
+        inset 1px 1px 0 var(--border-light);
+    }
+    
+    /* Windows 7/Vista card styles */
+    [data-theme="windows-7"] .card {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.6);
+    }
+    
+    [data-theme="windows-7"] .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
     }
     .card h3 { margin: 0 0 10px; font-size: 1.1rem; }
     .grid-3 {
@@ -410,6 +1059,45 @@
         0 0 0 3px rgba(0, 180, 216, 0.2),
         0 1px 0 rgba(255, 255, 255, 0.6);
     }
+    
+    /* Windows 9x input styles */
+    [data-theme="windows-9x"] .input, [data-theme="windows-9x"] .select {
+      background: var(--bg-elev);
+      border: 2px solid var(--border-dark);
+      border-radius: 0;
+      color: var(--text);
+      font-size: 11px;
+      box-shadow: 
+        inset -1px -1px 0 var(--border-light),
+        inset 1px 1px 0 var(--border-light);
+    }
+    [data-theme="windows-9x"] .input:focus, [data-theme="windows-9x"] .select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    
+    /* Windows 7/Vista input styles */
+    [data-theme="windows-7"] .input, [data-theme="windows-7"] .select {
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 4px;
+      color: var(--text);
+      font-size: 13px;
+      box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.4),
+        0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+    [data-theme="windows-7"] .input:focus, [data-theme="windows-7"] .select:focus {
+      outline: none;
+      border-color: var(--accent-2);
+      box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.5),
+        0 0 0 2px rgba(0, 120, 215, 0.2);
+    }
     .table {
       width: 100%;
       border-collapse: collapse;
@@ -439,6 +1127,44 @@
       background: linear-gradient(135deg, var(--accent-3), var(--accent));
       color: #ffffff;
       text-shadow: 0 1px 2px rgba(0, 119, 182, 0.3);
+    }
+    
+    /* Windows 9x table styles */
+    [data-theme="windows-9x"] .table {
+      border: 2px solid var(--border-dark);
+      border-radius: 0;
+      background: var(--bg-elev);
+      box-shadow: 
+        inset -1px -1px 0 var(--border-light),
+        inset 1px 1px 0 var(--border-light);
+    }
+    [data-theme="windows-9x"] .table th, [data-theme="windows-9x"] .table td {
+      border-bottom: 1px solid var(--border-dim);
+    }
+    [data-theme="windows-9x"] .table thead {
+      background: var(--accent);
+      color: #ffffff;
+    }
+    
+    /* Windows 7/Vista table styles */
+    [data-theme="windows-7"] .table {
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 6px;
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.6);
+    }
+    [data-theme="windows-7"] .table th, [data-theme="windows-7"] .table td {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    [data-theme="windows-7"] .table thead {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #ffffff;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     }
     .table th, .table td {
       padding: 10px;
@@ -482,6 +1208,34 @@
     [data-theme="frutiger-aero"] .pill.expert { background: linear-gradient(135deg, #E57373, #EF5350); }
     [data-theme="frutiger-aero"] .pill.expertplus { background: linear-gradient(135deg, #7281FE, #5C6BC0); }
     [data-theme="frutiger-aero"] .pill.expertplusplus { background: linear-gradient(135deg, #424242, #212121); color: #FFFF00; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); }
+    
+    /* Windows 9x pill styles */
+    [data-theme="windows-9x"] .pill {
+      padding: 2px 6px;
+      border-radius: 0;
+      font-size: 11px;
+      font-weight: 400;
+      border: 1px solid var(--border-dark);
+    }
+    
+    /* Windows 7/Vista pill styles */
+    [data-theme="windows-7"] .pill {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 500;
+      box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    [data-theme="windows-7"] .pill.normal { background: linear-gradient(135deg, #4FC3F7, #29B6F6); }
+    [data-theme="windows-7"] .pill.hard { background: linear-gradient(135deg, #81C784, #66BB6A); }
+    [data-theme="windows-7"] .pill.insane { background: linear-gradient(135deg, #FBC02D, #F9A825); }
+    [data-theme="windows-7"] .pill.expert { background: linear-gradient(135deg, #E57373, #EF5350); }
+    [data-theme="windows-7"] .pill.expertplus { background: linear-gradient(135deg, #7281FE, #5C6BC0); }
+    [data-theme="windows-7"] .pill.expertplusplus { background: linear-gradient(135deg, #424242, #212121); color: #FFFF00; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); }
 
     /* Rules */
     .rules li {
@@ -726,6 +1480,400 @@
         0 6px 20px rgba(0, 180, 216, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.4);
     }
+    
+    /* Windows 9x theme toggle styles */
+    [data-theme="windows-9x"] .theme-toggle {
+      background: var(--bg-elev);
+      border: 2px solid var(--border-dark);
+      border-radius: 0;
+      color: var(--text);
+      font-size: 16px;
+      box-shadow: 
+        inset -1px -1px 0 var(--border-light),
+        inset 1px 1px 0 var(--border-light);
+    }
+    [data-theme="windows-9x"] .theme-toggle:hover {
+      background: var(--accent);
+      color: #ffffff;
+      transform: none;
+    }
+    
+    /* Windows 7/Vista theme toggle styles */
+    [data-theme="windows-7"] .theme-toggle {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 4px;
+      color: #ffffff;
+      font-size: 16px;
+      box-shadow: 
+        0 2px 8px rgba(0, 90, 158, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+    }
+    [data-theme="windows-7"] .theme-toggle:hover {
+      background: linear-gradient(135deg, var(--accent-2), var(--accent));
+      transform: translateY(-1px);
+      box-shadow: 
+        0 4px 12px rgba(0, 90, 158, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.4);
+    }
+
+    /* Mods toggle button */
+    .mods-toggle {
+      background: var(--accent-2);
+      color: #fff;
+      border: none;
+      padding: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 36px;
+      height: 36px;
+    }
+    
+    .mods-toggle:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    [data-theme="frutiger-aero"] .mods-toggle {
+      background: linear-gradient(135deg, var(--accent-3), var(--accent-2));
+      border-radius: 12px;
+      box-shadow: 
+        0 4px 12px rgba(0, 180, 216, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    [data-theme="frutiger-aero"] .mods-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 6px 20px rgba(0, 180, 216, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+    
+    /* Windows 9x mods toggle styles */
+    [data-theme="windows-9x"] .mods-toggle {
+      background: var(--bg-elev);
+      border: 2px solid var(--border-dark);
+      border-radius: 0;
+      color: var(--text);
+      font-size: 16px;
+      box-shadow: 
+        inset -1px -1px 0 var(--border-light),
+        inset 1px 1px 0 var(--border-light);
+    }
+    [data-theme="windows-9x"] .mods-toggle:hover {
+      background: var(--accent-2);
+      color: #ffffff;
+      transform: none;
+    }
+    
+    /* Windows 7/Vista mods toggle styles */
+    [data-theme="windows-7"] .mods-toggle {
+      background: linear-gradient(135deg, var(--accent-2), var(--accent));
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 4px;
+      color: #ffffff;
+      font-size: 16px;
+      box-shadow: 
+        0 2px 8px rgba(0, 90, 158, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+    }
+    [data-theme="windows-7"] .mods-toggle:hover {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      transform: translateY(-1px);
+      box-shadow: 
+        0 4px 12px rgba(0, 90, 158, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.4);
+    }
+
+    /* Mods drawer */
+    .mods-drawer {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 300px;
+      height: 100vh;
+      background: var(--card);
+      border-right: 1px solid #2a2a44;
+      transition: left 0.3s ease;
+      z-index: 2000;
+      overflow-y: auto;
+      box-shadow: 2px 0 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .mods-drawer.open {
+      left: 0;
+    }
+    
+    /* Frutiger Aero mods drawer styles */
+    [data-theme="frutiger-aero"] .mods-drawer {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-right: 1px solid var(--glass-border);
+      box-shadow: 
+        8px 0 32px rgba(0, 180, 216, 0.2),
+        inset -1px 0 0 rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Windows 9x mods drawer styles */
+    [data-theme="windows-9x"] .mods-drawer {
+      background: var(--bg-elev);
+      border: 2px solid var(--border-dark);
+      border-left: none;
+      box-shadow: 
+        inset -1px -1px 0 var(--border-light),
+        inset 1px 1px 0 var(--border-light);
+    }
+    
+    /* Windows 10/11 mods drawer styles */
+    [data-theme="windows-10"] .mods-drawer {
+      background: var(--aero-gradient);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-right: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 
+        4px 0 16px rgba(0, 0, 0, 0.1),
+        inset -1px 0 0 rgba(255, 255, 255, 0.6);
+    }
+    
+    /* macOS X mods drawer styles */
+    [data-theme="macosx"] .mods-drawer {
+      background: var(--brushed-metal);
+      border-right: 1px solid rgba(0, 0, 0, 0.4);
+      box-shadow: var(--shadow-outer);
+    }
+    
+    .mods-drawer-header {
+      padding: 20px;
+      border-bottom: 1px solid #2a2a44;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    [data-theme="frutiger-aero"] .mods-drawer-header {
+      border-bottom: 1px solid var(--glass-border);
+    }
+    
+    [data-theme="windows-9x"] .mods-drawer-header {
+      border-bottom: 2px solid var(--border-dark);
+    }
+    
+    [data-theme="windows-10"] .mods-drawer-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+    }
+    
+    [data-theme="macosx"] .mods-drawer-header {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    }
+    
+    .mods-drawer-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+    }
+    
+    .mods-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 20px;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+    
+    .mods-close-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+    }
+    
+    .mods-content {
+      padding: 20px;
+    }
+    
+    .mod-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .mod-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-1px);
+    }
+    
+    .mod-item.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    
+    [data-theme="frutiger-aero"] .mod-item {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+    }
+    
+    [data-theme="frutiger-aero"] .mod-item:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 180, 216, 0.2);
+    }
+    
+    [data-theme="frutiger-aero"] .mod-item.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    [data-theme="windows-9x"] .mod-item {
+      background: var(--bg-elev);
+      border: 2px solid var(--border-dark);
+      border-radius: 0;
+    }
+    
+    [data-theme="windows-9x"] .mod-item:hover {
+      background: var(--accent);
+      color: #ffffff;
+      transform: none;
+    }
+    
+    .mod-info {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .mod-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    .mod-description {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    
+    .mod-toggle {
+      width: 44px;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      position: relative;
+      transition: background 0.2s ease;
+    }
+    
+    .mod-toggle.active {
+      background: var(--accent);
+    }
+    
+    .mod-toggle-slider {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .mod-toggle.active .mod-toggle-slider {
+      transform: translateX(20px);
+    }
+
+    /* Mods overlay effects */
+    .mods-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1500;
+    }
+
+    /* Flashlight mod overlay */
+    .flashlight-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(
+        circle 100px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        transparent 0%,
+        transparent 100px,
+        rgba(0, 0, 0, 0.9) 150px,
+        rgba(0, 0, 0, 0.95) 200px
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .flashlight-overlay.active {
+      opacity: 1;
+    }
+
+    /* Hard Rock mod styles */
+    .hard-rock-active {
+      transform: scale(0.85);
+      transform-origin: center;
+    }
+
+    /* Hidden mod styles */
+    .hidden-mod .card,
+    .hidden-mod .hero,
+    .hidden-mod .match,
+    .hidden-mod .result,
+    .hidden-mod .beatmap-item,
+    .hidden-mod h1,
+    .hidden-mod h2,
+    .hidden-mod h3,
+    .hidden-mod h4,
+    .hidden-mod p,
+    .hidden-mod li,
+    .hidden-mod span,
+    .hidden-mod td {
+      opacity: 0.1;
+      transition: opacity 0.3s ease;
+    }
+
+    .hidden-mod .card:hover,
+    .hidden-mod .hero:hover,
+    .hidden-mod .match:hover,
+    .hidden-mod .result:hover,
+    .hidden-mod .beatmap-item:hover,
+    .hidden-mod h1:hover,
+    .hidden-mod h2:hover,
+    .hidden-mod h3:hover,
+    .hidden-mod h4:hover,
+    .hidden-mod p:hover,
+    .hidden-mod li:hover,
+    .hidden-mod span:hover,
+    .hidden-mod td:hover {
+      opacity: 1;
+    }
 
     /* Admin-only tab hiding with maximum specificity */
     .tab-btn.admin-only {
@@ -755,13 +1903,59 @@
 
     <div class="userbox">
       <span id="userStatus">Guest</span>
+      <button id="modsToggle" class="mods-toggle" title="Toggle osu! mods">
+        <span class="mods-icon">🎯</span>
+      </button>
       <button id="themeToggle" class="theme-toggle" title="Toggle theme">
         <span class="theme-icon">🌊</span>
       </button>
+      <button class="register-btn" id="registerBtn">Register</button>
       <button class="signin-btn" id="signInBtn">Sign in</button>
       <button class="signout-btn" id="signOutBtn" style="display: none;">Sign out</button>
     </div>
   </nav>
+
+  <!-- Mods Drawer -->
+  <div id="modsDrawer" class="mods-drawer">
+    <div class="mods-drawer-header">
+      <h3 class="mods-drawer-title">osu! Mods</h3>
+      <button id="modsCloseBtn" class="mods-close-btn">✕</button>
+    </div>
+    <div class="mods-content">
+      <div class="mod-item" data-mod="fl">
+        <div class="mod-info">
+          <div class="mod-name">Flashlight (FL)</div>
+          <div class="mod-description">Circular visible area around cursor</div>
+        </div>
+        <div class="mod-toggle" id="flToggle">
+          <div class="mod-toggle-slider"></div>
+        </div>
+      </div>
+      <div class="mod-item" data-mod="hr">
+        <div class="mod-info">
+          <div class="mod-name">Hard Rock (HR)</div>
+          <div class="mod-description">Everything gets smaller</div>
+        </div>
+        <div class="mod-toggle" id="hrToggle">
+          <div class="mod-toggle-slider"></div>
+        </div>
+      </div>
+      <div class="mod-item" data-mod="hd">
+        <div class="mod-info">
+          <div class="mod-name">Hidden (HD)</div>
+          <div class="mod-description">Text only visible on hover</div>
+        </div>
+        <div class="mod-toggle" id="hdToggle">
+          <div class="mod-toggle-slider"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mods Overlay -->
+  <div class="mods-overlay">
+    <div class="flashlight-overlay" id="flashlightOverlay"></div>
+  </div>
 
   <main class="container">
     <!-- Home -->
@@ -1124,6 +2318,71 @@
     </div>
   </div>
 
+  <!-- Registration modal -->
+  <div class="modal-backdrop" id="registerModalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="registerTitle">
+      <h3 id="registerTitle">Register for Tournament</h3>
+      <div class="row">
+        <label for="regUsername">Username *</label>
+        <input id="regUsername" class="input" type="text" autocomplete="username" />
+      </div>
+      <div class="row">
+        <label for="regEmail">Email *</label>
+        <input id="regEmail" class="input" type="email" autocomplete="email" />
+      </div>
+      <div class="row">
+        <label for="regOsuUsername">osu! Username *</label>
+        <input id="regOsuUsername" class="input" type="text" />
+      </div>
+      <div class="row">
+        <label for="regOsuId">osu! User ID *</label>
+        <input id="regOsuId" class="input" type="number" placeholder="Numeric ID" />
+        <div style="margin-top: 4px;">
+          <label style="font-weight: normal; color: var(--muted);">
+            <input type="checkbox" id="noOsuAccount" style="margin-right: 4px;">
+            I don't have an osu! account
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <label for="regCountry">Country *</label>
+        <input id="regCountry" class="input" type="text" placeholder="e.g., USA, Japan" />
+      </div>
+      <div class="row">
+        <label for="regPreferredBracket">Preferred Difficulty Bracket *</label>
+        <select id="regPreferredBracket" class="select">
+          <option value="">Select bracket...</option>
+          <option value="normal">Normal</option>
+          <option value="hard">Hard</option>
+          <option value="insane">Insane</option>
+          <option value="expert">Expert</option>
+          <option value="expert+">Expert+</option>
+          <option value="expert++">Expert++</option>
+          <option value="not-sure">Not sure (organizers will decide)</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="regExperience">Experience Level *</label>
+        <select id="regExperience" class="select">
+          <option value="">Select experience...</option>
+          <option value="beginner">Beginner (New to tournaments)</option>
+          <option value="intermediate">Intermediate (Some tournament experience)</option>
+          <option value="advanced">Advanced (Regular tournament player)</option>
+          <option value="expert">Expert (High-level tournament experience)</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="regComments">Additional Comments</label>
+        <textarea id="regComments" class="input" rows="3" placeholder="Any additional information or special requirements..."></textarea>
+      </div>
+      <div class="error" id="registerError"></div>
+      <div class="actions">
+        <button class="btn" id="cancelRegister">Cancel</button>
+        <button class="btn primary" id="confirmRegister">Register</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     /* ------------------------------
        Hardcoded accounts (SHA-256)
@@ -1281,6 +2540,15 @@
       if (savedTheme === 'frutiger-aero') {
         document.documentElement.setAttribute('data-theme', 'frutiger-aero');
         themeToggleBtn.querySelector('.theme-icon').textContent = '🌙';
+      } else if (savedTheme === 'windows-9x') {
+        document.documentElement.setAttribute('data-theme', 'windows-9x');
+        themeToggleBtn.querySelector('.theme-icon').textContent = '🖥️';
+      } else if (savedTheme === 'windows-10') {
+        document.documentElement.setAttribute('data-theme', 'windows-10');
+        themeToggleBtn.querySelector('.theme-icon').textContent = '🪟';
+      } else if (savedTheme === 'macosx') {
+        document.documentElement.setAttribute('data-theme', 'macosx');
+        themeToggleBtn.querySelector('.theme-icon').textContent = '🍎';
       } else {
         themeToggleBtn.querySelector('.theme-icon').textContent = '🌊';
       }
@@ -1288,12 +2556,36 @@
     
     function toggleTheme() {
       const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'frutiger-aero' ? '' : 'frutiger-aero';
+      let newTheme;
+      
+      if (currentTheme === 'frutiger-aero') {
+        newTheme = 'windows-9x';
+      } else if (currentTheme === 'windows-9x') {
+        newTheme = 'windows-10';
+      } else if (currentTheme === 'windows-10') {
+        newTheme = 'macosx';
+      } else if (currentTheme === 'macosx') {
+        newTheme = '';
+      } else {
+        newTheme = 'frutiger-aero';
+      }
       
       if (newTheme === 'frutiger-aero') {
         document.documentElement.setAttribute('data-theme', 'frutiger-aero');
         localStorage.setItem('theme', 'frutiger-aero');
         themeToggleBtn.querySelector('.theme-icon').textContent = '🌙';
+      } else if (newTheme === 'windows-9x') {
+        document.documentElement.setAttribute('data-theme', 'windows-9x');
+        localStorage.setItem('theme', 'windows-9x');
+        themeToggleBtn.querySelector('.theme-icon').textContent = '🖥️';
+      } else if (newTheme === 'windows-10') {
+        document.documentElement.setAttribute('data-theme', 'windows-10');
+        localStorage.setItem('theme', 'windows-10');
+        themeToggleBtn.querySelector('.theme-icon').textContent = '🪟';
+      } else if (newTheme === 'macosx') {
+        document.documentElement.setAttribute('data-theme', 'macosx');
+        localStorage.setItem('theme', 'macosx');
+        themeToggleBtn.querySelector('.theme-icon').textContent = '🍎';
       } else {
         document.documentElement.removeAttribute('data-theme');
         localStorage.setItem('theme', 'default');
@@ -1302,6 +2594,139 @@
     }
     
     themeToggleBtn.addEventListener('click', toggleTheme);
+
+    /* ------------------------------
+       Mods management
+       ------------------------------ */
+    const modsToggleBtn = document.getElementById('modsToggle');
+    const modsDrawer = document.getElementById('modsDrawer');
+    const modsCloseBtn = document.getElementById('modsCloseBtn');
+    const flashlightOverlay = document.getElementById('flashlightOverlay');
+    const flToggle = document.getElementById('flToggle');
+    const hrToggle = document.getElementById('hrToggle');
+    const hdToggle = document.getElementById('hdToggle');
+    
+    let activeMods = {
+      fl: false,
+      hr: false,
+      hd: false
+    };
+    
+    let mouseX = 50;
+    let mouseY = 50;
+    
+    // Drawer controls
+    function openModsDrawer() {
+      modsDrawer.classList.add('open');
+    }
+    
+    function closeModsDrawer() {
+      modsDrawer.classList.remove('open');
+    }
+    
+    modsToggleBtn.addEventListener('click', openModsDrawer);
+    modsCloseBtn.addEventListener('click', closeModsDrawer);
+    
+    // Close drawer when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!modsDrawer.contains(e.target) && !modsToggleBtn.contains(e.target)) {
+        closeModsDrawer();
+      }
+    });
+    
+    // Mod toggle functions
+    function toggleMod(modName) {
+      // Only allow one mod at a time (except they can be turned off individually)
+      if (!activeMods[modName]) {
+        // Turn off all other mods first
+        Object.keys(activeMods).forEach(mod => {
+          if (mod !== modName && activeMods[mod]) {
+            setModState(mod, false);
+          }
+        });
+      }
+      
+      setModState(modName, !activeMods[modName]);
+    }
+    
+    function setModState(modName, isActive) {
+      activeMods[modName] = isActive;
+      const modItem = document.querySelector(`[data-mod="${modName}"]`);
+      const toggleElement = document.getElementById(`${modName}Toggle`);
+      
+      if (isActive) {
+        modItem.classList.add('active');
+        toggleElement.classList.add('active');
+      } else {
+        modItem.classList.remove('active');
+        toggleElement.classList.remove('active');
+      }
+      
+      // Apply mod effects
+      switch(modName) {
+        case 'fl':
+          applyFlashlightMod(isActive);
+          break;
+        case 'hr':
+          applyHardRockMod(isActive);
+          break;
+        case 'hd':
+          applyHiddenMod(isActive);
+          break;
+      }
+    }
+    
+    // Flashlight mod implementation
+    function applyFlashlightMod(isActive) {
+      if (isActive) {
+        flashlightOverlay.classList.add('active');
+        document.addEventListener('mousemove', updateFlashlightPosition);
+        updateFlashlightPosition({ clientX: window.innerWidth / 2, clientY: window.innerHeight / 2 });
+      } else {
+        flashlightOverlay.classList.remove('active');
+        document.removeEventListener('mousemove', updateFlashlightPosition);
+      }
+    }
+    
+    function updateFlashlightPosition(e) {
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      flashlightOverlay.style.setProperty('--mouse-x', `${x}%`);
+      flashlightOverlay.style.setProperty('--mouse-y', `${y}%`);
+    }
+    
+    // Hard Rock mod implementation
+    function applyHardRockMod(isActive) {
+      const container = document.querySelector('.container');
+      if (isActive) {
+        container.classList.add('hard-rock-active');
+      } else {
+        container.classList.remove('hard-rock-active');
+      }
+    }
+    
+    // Hidden mod implementation
+    function applyHiddenMod(isActive) {
+      const body = document.body;
+      if (isActive) {
+        body.classList.add('hidden-mod');
+      } else {
+        body.classList.remove('hidden-mod');
+      }
+    }
+    
+    // Mod toggle event listeners
+    flToggle.addEventListener('click', () => toggleMod('fl'));
+    hrToggle.addEventListener('click', () => toggleMod('hr'));
+    hdToggle.addEventListener('click', () => toggleMod('hd'));
+    
+    // Also make mod items clickable
+    document.querySelectorAll('.mod-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const modName = item.dataset.mod;
+        toggleMod(modName);
+      });
+    });
 
     /* ------------------------------
        Session management
@@ -1549,6 +2974,222 @@
       const accessDenied = document.querySelector('#tools .access-denied');
       if (accessDenied) {
         accessDenied.remove();
+      }
+    });
+
+    /* ------------------------------
+       Registration modal
+       ------------------------------ */
+    // Registration modal elements
+    const registerBtn = document.getElementById('registerBtn');
+    const registerModalBackdrop = document.getElementById('registerModalBackdrop');
+    const cancelRegisterBtn = document.getElementById('cancelRegister');
+    const confirmRegisterBtn = document.getElementById('confirmRegister');
+    const registerErrorEl = document.getElementById('registerError');
+    
+    // Registration form elements
+    const regUsernameEl = document.getElementById('regUsername');
+    const regEmailEl = document.getElementById('regEmail');
+    const regOsuUsernameEl = document.getElementById('regOsuUsername');
+    const regOsuIdEl = document.getElementById('regOsuId');
+    const noOsuAccountEl = document.getElementById('noOsuAccount');
+    const regCountryEl = document.getElementById('regCountry');
+    const regPreferredBracketEl = document.getElementById('regPreferredBracket');
+    const regExperienceEl = document.getElementById('regExperience');
+    const regCommentsEl = document.getElementById('regComments');
+
+    function openRegisterModal() {
+      registerModalBackdrop.style.display = 'flex';
+      registerModalBackdrop.setAttribute('aria-hidden', 'false');
+      registerErrorEl.textContent = '';
+      // Clear form
+      regUsernameEl.value = '';
+      regEmailEl.value = '';
+      regOsuUsernameEl.value = '';
+      regOsuIdEl.value = '';
+      noOsuAccountEl.checked = false;
+      regCountryEl.value = '';
+      regPreferredBracketEl.value = '';
+      regExperienceEl.value = '';
+      regCommentsEl.value = '';
+      regUsernameEl.focus();
+    }
+
+    function closeRegisterModal() {
+      registerModalBackdrop.style.display = 'none';
+      registerModalBackdrop.setAttribute('aria-hidden', 'true');
+    }
+
+    // Validate email format
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    // Submit registration data to Google Sheets
+    async function submitRegistrationToGoogleSheets(registrationData) {
+      const googleSheetsId = '1gwlmCixsyiyhzVzaXNGJaHyZwC5bbrVST24f1akTQI4';
+      const url = `https://docs.google.com/spreadsheets/d/${googleSheetsId}/gviz/tq?tqx=out:json&gid=3`; // Tab 4 for registrations
+      
+      try {
+        // Create a new row with the registration data
+        const newRow = [
+          registrationData.username,
+          registrationData.email,
+          registrationData.osuUsername,
+          registrationData.osuId,
+          registrationData.country,
+          registrationData.preferredBracket,
+          registrationData.experience,
+          registrationData.comments,
+          new Date().toISOString() // Timestamp
+        ];
+        
+        // Note: Direct writing to Google Sheets requires server-side code or Google Apps Script
+        // For now, we'll store in localStorage as a fallback
+        const existingRegistrations = JSON.parse(localStorage.getItem('tournamentRegistrations') || '[]');
+        existingRegistrations.push(registrationData);
+        localStorage.setItem('tournamentRegistrations', JSON.stringify(existingRegistrations));
+        
+        console.log('Registration data saved locally:', registrationData);
+        return true;
+        
+        // In a real implementation, you would use Google Apps Script Web App URL:
+        // const scriptUrl = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+        // const response = await fetch(scriptUrl, {
+        //   method: 'POST',
+        //   headers: { 'Content-Type': 'application/json' },
+        //   body: JSON.stringify(registrationData)
+        // });
+        // return response.ok;
+        
+      } catch (error) {
+        console.error('Failed to submit registration:', error);
+        return false;
+      }
+    }
+
+    async function handleRegistration() {
+      registerErrorEl.textContent = '';
+      
+      // Get form values
+      const username = regUsernameEl.value.trim();
+      const email = regEmailEl.value.trim();
+      const osuUsername = regOsuUsernameEl.value.trim();
+      const osuId = regOsuIdEl.value.trim();
+      const country = regCountryEl.value.trim();
+      const preferredBracket = regPreferredBracketEl.value;
+      const experience = regExperienceEl.value;
+      const comments = regCommentsEl.value.trim();
+      
+      // Validation
+      if (!username) {
+        registerErrorEl.textContent = 'Username is required.';
+        return;
+      }
+      
+      if (!email || !isValidEmail(email)) {
+        registerErrorEl.textContent = 'Valid email is required.';
+        return;
+      }
+      
+      if (!osuUsername && !noOsuAccountEl.checked) {
+        registerErrorEl.textContent = 'osu! username is required.';
+        return;
+      }
+      
+      if (!osuId || isNaN(osuId) || osuId <= 0) {
+        if (!noOsuAccountEl.checked) {
+          registerErrorEl.textContent = 'Valid osu! User ID is required.';
+          return;
+        }
+      }
+      
+      if (!country) {
+        registerErrorEl.textContent = 'Country is required.';
+        return;
+      }
+      
+      if (!preferredBracket) {
+        registerErrorEl.textContent = 'Please select a preferred difficulty bracket.';
+        return;
+      }
+      
+      if (!experience) {
+        registerErrorEl.textContent = 'Please select your experience level.';
+        return;
+      }
+      
+      // Create registration object
+      const registrationData = {
+        username,
+        email,
+        osuUsername,
+        osuId: parseInt(osuId),
+        country,
+        preferredBracket,
+        experience,
+        comments,
+        timestamp: new Date().toISOString()
+      };
+      
+      // Submit registration
+      const success = await submitRegistrationToGoogleSheets(registrationData);
+      
+      if (success) {
+        alert('Registration submitted successfully! You will be contacted via email with further information.');
+        closeRegisterModal();
+      } else {
+        registerErrorEl.textContent = 'Failed to submit registration. Please try again later.';
+      }
+    }
+
+    // Registration event listeners
+    registerBtn.addEventListener('click', openRegisterModal);
+    cancelRegisterBtn.addEventListener('click', closeRegisterModal);
+    confirmRegisterBtn.addEventListener('click', handleRegistration);
+    registerModalBackdrop.addEventListener('click', (e) => {
+      if (e.target === registerModalBackdrop) closeRegisterModal();
+    });
+
+    // Add Enter key support for registration form
+    [regUsernameEl, regEmailEl, regOsuUsernameEl, regOsuIdEl, regCountryEl, regPreferredBracketEl, regExperienceEl, regCommentsEl].forEach(el => {
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          handleRegistration();
+        }
+      });
+    });
+
+    // Handle checkbox toggle for "I don't have an osu! account"
+    noOsuAccountEl.addEventListener('change', (e) => {
+      const hasNoAccount = e.target.checked;
+      
+      // Toggle required status of osu! fields
+      regOsuUsernameEl.disabled = hasNoAccount;
+      regOsuIdEl.disabled = hasNoAccount;
+      
+      // Clear fields when checkbox is checked
+      if (hasNoAccount) {
+        regOsuUsernameEl.value = '';
+        regOsuIdEl.value = '';
+        regOsuUsernameEl.placeholder = 'Not applicable';
+        regOsuIdEl.placeholder = 'Not applicable';
+      } else {
+        regOsuUsernameEl.placeholder = '';
+        regOsuIdEl.placeholder = 'Numeric ID';
+      }
+      
+      // Update field labels visually
+      const osuUsernameLabel = regOsuUsernameEl.previousElementSibling;
+      const osuIdLabel = regOsuIdEl.previousElementSibling;
+      
+      if (osuUsernameLabel) {
+        osuUsernameLabel.textContent = hasNoAccount ? 'osu! Username' : 'osu! Username *';
+      }
+      if (osuIdLabel) {
+        osuIdLabel.textContent = hasNoAccount ? 'osu! User ID' : 'osu! User ID *';
       }
     });
 
