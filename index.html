@@ -16,6 +16,66 @@
       --ok: #2ecc71;
       --bad: #ff4d4f;
     }
+    
+    /* Frutiger Aero theme variables */
+    [data-theme="frutiger-aero"] {
+      --bg: #e8f4ff;
+      --bg-elev: #ffffff;
+      --card: #ffffff;
+      --text: #2c3e50;
+      --muted: #7f8c8d;
+      --accent: #00b4d8; /* bright blue */
+      --accent-2: #0077b6; /* deeper blue */
+      --accent-3: #90e0ef; /* light blue */
+      --accent-4: #caf0f8; /* very light blue */
+      --ok: #06ffa5;
+      --bad: #ff006e;
+      --glass: rgba(255, 255, 255, 0.25);
+      --glass-border: rgba(255, 255, 255, 0.18);
+    }
+    
+    /* Tab-specific color variations */
+    [data-theme="frutiger-aero"] body.tab-home {
+      --accent: #00b4d8; /* pure blue */
+      --accent-2: #0077b6;
+      --accent-3: #90e0ef;
+      --accent-4: #caf0f8;
+    }
+    
+    [data-theme="frutiger-aero"] body.tab-brackets {
+      --accent: #00a89c; /* blue-green mix */
+      --accent-2: #006b63;
+      --accent-3: #7dd3c0;
+      --accent-4: #b2e2d2;
+    }
+    
+    [data-theme="frutiger-aero"] body.tab-live {
+      --accent: #009d8a; /* more green */
+      --accent-2: #005f56;
+      --accent-3: #6fc7b5;
+      --accent-4: #a8d8cc;
+    }
+    
+    [data-theme="frutiger-aero"] body.tab-rules {
+      --accent: #009278; /* even more green */
+      --accent-2: #005349;
+      --accent-3: #61cba9;
+      --accent-4: #9dcec6;
+    }
+    
+    [data-theme="frutiger-aero"] body.tab-beatmaps {
+      --accent: #008766; /* very green-blue */
+      --accent-2: #00473c;
+      --accent-3: #54cf9d;
+      --accent-4: #92c4c0;
+    }
+    
+    [data-theme="frutiger-aero"] body.tab-tools {
+      --accent: #007c54; /* equal blue-green mix */
+      --accent-2: #003b2f;
+      --accent-3: #47d391;
+      --accent-4: #89bab8;
+    }
 
     html, body {
       margin: 0;
@@ -23,6 +83,30 @@
       background: var(--bg);
       color: var(--text);
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      min-height: 100vh;
+      position: relative;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    
+    /* Frutiger Aero background styles */
+    [data-theme="frutiger-aero"] html, [data-theme="frutiger-aero"] body {
+      background: linear-gradient(135deg, #e8f4ff 0%, #caf0f8 25%, #90e0ef 50%, #00b4d8 75%, #0077b6 100%);
+      font-family: 'Segoe UI', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+    
+    [data-theme="frutiger-aero"] body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(144, 224, 239, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 180, 216, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(202, 240, 248, 0.2) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
     }
 
     /* Top nav */
@@ -36,6 +120,20 @@
       padding: 12px 20px;
       background: linear-gradient(90deg, var(--bg-elev), var(--card));
       border-bottom: 1px solid #26263a;
+      transition: all 0.3s ease;
+    }
+    
+    /* Frutiger Aero nav styles */
+    [data-theme="frutiger-aero"] .nav {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+      border-radius: 0 0 20px 20px;
+      box-shadow: 
+        0 8px 32px rgba(0, 180, 216, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
     }
     .brand {
       display: flex;
@@ -50,6 +148,17 @@
       border-radius: 50%;
       background: radial-gradient(circle at 30% 30%, #fff 0%, var(--accent) 40%, #b30460 100%);
       box-shadow: 0 0 12px rgba(255, 102, 170, 0.6);
+      transition: all 0.3s ease;
+    }
+    
+    [data-theme="frutiger-aero"] .brand .logo {
+      background: radial-gradient(circle at 30% 30%, #ffffff 0%, var(--accent-3) 40%, var(--accent) 100%);
+      box-shadow: 
+        0 0 20px rgba(0, 180, 216, 0.8),
+        0 4px 12px rgba(0, 180, 216, 0.4),
+        inset 0 -2px 4px rgba(0, 119, 182, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.8);
+      border: 2px solid rgba(255, 255, 255, 0.8);
     }
     .brand .name {
       color: var(--text);
@@ -71,6 +180,35 @@
     }
     .tab-btn:hover { color: var(--text); background: #23233a; }
     .tab-btn.active { color: #fff; background: var(--accent); }
+    
+    /* Frutiger Aero tab styles */
+    [data-theme="frutiger-aero"] .tab-btn {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      box-shadow: 
+        0 4px 12px rgba(0, 180, 216, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+    [data-theme="frutiger-aero"] .tab-btn:hover { 
+      color: var(--accent-2); 
+      background: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 
+        0 6px 20px rgba(0, 180, 216, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+    [data-theme="frutiger-aero"] .tab-btn.active { 
+      color: #ffffff; 
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 
+        0 8px 24px rgba(0, 180, 216, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 2px 4px rgba(0, 119, 182, 0.3);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
 
     .userbox {
       display: flex;
@@ -90,6 +228,23 @@
       transition: transform 0.1s ease;
     }
     .signin-btn:hover, .signout-btn:hover { transform: translateY(-1px); }
+    
+    /* Frutiger Aero button styles */
+    [data-theme="frutiger-aero"] .signin-btn, [data-theme="frutiger-aero"] .signout-btn {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-radius: 12px;
+      padding: 8px 12px;
+      box-shadow: 
+        0 4px 12px rgba(0, 180, 216, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    [data-theme="frutiger-aero"] .signin-btn:hover, [data-theme="frutiger-aero"] .signout-btn:hover { 
+      transform: translateY(-2px);
+      box-shadow: 
+        0 6px 20px rgba(0, 180, 216, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
 
     /* Page container */
     .container {
@@ -108,6 +263,40 @@
       grid-template-columns: 1fr 1fr;
       gap: 20px;
       align-items: center;
+      transition: all 0.3s ease;
+    }
+    
+    /* Frutiger Aero hero styles */
+    [data-theme="frutiger-aero"] .hero {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 32px;
+      gap: 24px;
+      box-shadow: 
+        0 16px 48px rgba(0, 180, 216, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    [data-theme="frutiger-aero"] .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(144, 224, 239, 0.1) 0%, transparent 70%);
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
     }
     .hero h1 { margin: 0 0 8px; font-size: 2rem; }
     .hero p { margin: 0; color: var(--muted); }
@@ -120,6 +309,24 @@
       border-radius: 10px;
       font-weight: 700;
       text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    [data-theme="frutiger-aero"] .hero .cta {
+      background: linear-gradient(135deg, var(--accent-3), var(--accent));
+      padding: 12px 18px;
+      border-radius: 16px;
+      box-shadow: 
+        0 6px 20px rgba(0, 180, 216, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    [data-theme="frutiger-aero"] .hero .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 8px 28px rgba(0, 180, 216, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
     }
 
     /* Cards */
@@ -128,6 +335,33 @@
       border: 1px solid #2a2a44;
       border-radius: 12px;
       padding: 16px;
+      transition: all 0.3s ease;
+    }
+    
+    /* Frutiger Aero card styles */
+    [data-theme="frutiger-aero"] .card {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 
+        0 8px 32px rgba(0, 180, 216, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    [data-theme="frutiger-aero"] .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
     }
     .card h3 { margin: 0 0 10px; font-size: 1.1rem; }
     .grid-3 {
@@ -152,6 +386,29 @@
       border: 1px solid #2a2a44;
       border-radius: 8px;
       padding: 8px 10px;
+      transition: all 0.3s ease;
+    }
+    
+    /* Frutiger Aero input styles */
+    [data-theme="frutiger-aero"] .input, [data-theme="frutiger-aero"] .select {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      box-shadow: 
+        inset 0 2px 4px rgba(0, 180, 216, 0.1),
+        0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+    
+    [data-theme="frutiger-aero"] .input:focus, [data-theme="frutiger-aero"] .select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 
+        inset 0 2px 4px rgba(0, 180, 216, 0.1),
+        0 0 0 3px rgba(0, 180, 216, 0.2),
+        0 1px 0 rgba(255, 255, 255, 0.6);
     }
     .table {
       width: 100%;
@@ -159,6 +416,29 @@
       border: 1px solid #2a2a44;
       border-radius: 12px;
       overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    /* Frutiger Aero table styles */
+    [data-theme="frutiger-aero"] .table {
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      background: var(--glass);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      box-shadow: 
+        0 8px 32px rgba(0, 180, 216, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+    
+    [data-theme="frutiger-aero"] .table th, [data-theme="frutiger-aero"] .table td {
+      border-bottom: 1px solid var(--glass-border);
+    }
+    
+    [data-theme="frutiger-aero"] .table thead {
+      background: linear-gradient(135deg, var(--accent-3), var(--accent));
+      color: #ffffff;
+      text-shadow: 0 1px 2px rgba(0, 119, 182, 0.3);
     }
     .table th, .table td {
       padding: 10px;
@@ -175,13 +455,33 @@
       border-radius: 999px;
       font-size: 12px;
       color: #fff;
+      font-weight: 600;
+      transition: all 0.3s ease;
     }
+    
+    /* Frutiger Aero pill styles */
+    [data-theme="frutiger-aero"] .pill {
+      padding: 4px 10px;
+      border-radius: 20px;
+      box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
     .pill.normal { background: #4FC3F7; }   /* light blue */
     .pill.hard { background: #81C784; }     /* green */
     .pill.insane { background: #FBC02D; }   /* yellow */
     .pill.expert { background: #E57373; }   /* red */
     .pill.expertplus { background: #7281FE; }  /* purple */
     .pill.expertplusplus { background: #000000; color: #FFFF00; }  /* black with yellow text */
+    
+    [data-theme="frutiger-aero"] .pill.normal { background: linear-gradient(135deg, #4FC3F7, #29B6F6); }
+    [data-theme="frutiger-aero"] .pill.hard { background: linear-gradient(135deg, #81C784, #66BB6A); }
+    [data-theme="frutiger-aero"] .pill.insane { background: linear-gradient(135deg, #FBC02D, #F9A825); }
+    [data-theme="frutiger-aero"] .pill.expert { background: linear-gradient(135deg, #E57373, #EF5350); }
+    [data-theme="frutiger-aero"] .pill.expertplus { background: linear-gradient(135deg, #7281FE, #5C6BC0); }
+    [data-theme="frutiger-aero"] .pill.expertplusplus { background: linear-gradient(135deg, #424242, #212121); color: #FFFF00; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); }
 
     /* Rules */
     .rules li {
@@ -388,6 +688,44 @@
       resize: vertical;
       min-height: 100px;
     }
+    
+    /* Theme toggle button */
+    .theme-toggle {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 36px;
+      height: 36px;
+    }
+    
+    .theme-toggle:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    [data-theme="frutiger-aero"] .theme-toggle {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-radius: 12px;
+      box-shadow: 
+        0 4px 12px rgba(0, 180, 216, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    [data-theme="frutiger-aero"] .theme-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 6px 20px rgba(0, 180, 216, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
   </style>
 </head>
 <body>
@@ -409,6 +747,9 @@
 
     <div class="userbox">
       <span id="userStatus">Guest</span>
+      <button id="themeToggle" class="theme-toggle" title="Toggle theme">
+        <span class="theme-icon">🌊</span>
+      </button>
       <button class="signin-btn" id="signInBtn">Sign in</button>
       <button class="signout-btn" id="signOutBtn" style="display: none;">Sign out</button>
     </div>
@@ -730,6 +1071,22 @@
     </section>
   </main>
 
+  <!-- Easter Egg Modal -->
+  <div class="modal-backdrop" id="easterEggModalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="easterEggTitle">
+      <h3 id="easterEggTitle">🎉 You found the secret!</h3>
+      <p style="margin-bottom: 16px;">Congratulations on discovering the easter egg! Here are some useful links:</p>
+      <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;">
+        <a href="https://github.com/bakedb/osu-tourney-page" target="_blank" class="btn primary" style="text-align: center; text-decoration: none;">GitHub Repository</a>
+        <a href="https://osu.ppy.sh" target="_blank" class="btn primary" style="text-align: center; text-decoration: none;">osu!.ppy.sh</a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn primary" style="text-align: center; text-decoration: none;">Secret Link!</a>
+      </div>
+      <div class="actions">
+        <button class="btn primary" id="closeEasterEgg">Close</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Sign-in modal -->
   <div class="modal-backdrop" id="signInModalBackdrop" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="signInTitle">
@@ -818,10 +1175,45 @@
     const usernameEl = document.getElementById('username');
     const passwordEl = document.getElementById('password');
     const sessionDurationEl = document.getElementById('sessionDuration');
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const logoEl = document.querySelector('.logo');
+    const easterEggModalBackdrop = document.getElementById('easterEggModalBackdrop');
+    const closeEasterEggBtn = document.getElementById('closeEasterEgg');
 
     let currentUser = null;
     let currentUserRole = null;
     let sessionExpiry = null;
+    let logoClickCount = 0;
+    
+    /* ------------------------------
+       Theme management
+       ------------------------------ */
+    function loadTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'frutiger-aero') {
+        document.documentElement.setAttribute('data-theme', 'frutiger-aero');
+        themeToggleBtn.querySelector('.theme-icon').textContent = '🌙';
+      } else {
+        themeToggleBtn.querySelector('.theme-icon').textContent = '🌊';
+      }
+    }
+    
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'frutiger-aero' ? '' : 'frutiger-aero';
+      
+      if (newTheme === 'frutiger-aero') {
+        document.documentElement.setAttribute('data-theme', 'frutiger-aero');
+        localStorage.setItem('theme', 'frutiger-aero');
+        themeToggleBtn.querySelector('.theme-icon').textContent = '🌙';
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'default');
+        themeToggleBtn.querySelector('.theme-icon').textContent = '🌊';
+      }
+    }
+    
+    themeToggleBtn.addEventListener('click', toggleTheme);
 
     /* ------------------------------
        Session management
@@ -897,6 +1289,12 @@
         return;
       }
       
+      // Remove all tab classes from body
+      document.body.classList.remove('tab-home', 'tab-brackets', 'tab-live', 'tab-rules', 'tab-beatmaps', 'tab-tools');
+      
+      // Add current tab class for theme variations
+      document.body.classList.add(`tab-${name}`);
+      
       for (const t of tabs) t.classList.toggle('active', t.dataset.tab === name);
       for (const key of Object.keys(panels)) {
         panels[key].style.display = key === name ? 'block' : 'none';
@@ -909,39 +1307,6 @@
       
       // Update hash for deep linking
       location.hash = name;
-    }
-
-    // Update tools visibility based on user role
-    function updateToolsVisibility() {
-      const scoreCalculator = document.querySelector('#tools .card:first-child');
-      const songFormatter = document.querySelector('#tools .card:nth-child(2)');
-      const toggleSongFormatterBtn = document.getElementById('toggleSongFormatterBtn');
-      
-      if (currentUserRole === 'Admin') {
-        songFormatter.style.display = 'block';
-        scoreCalculator.style.display = 'block';
-        // Remove any access denied messages
-        const accessDenied = document.querySelector('#tools .access-denied');
-        if (accessDenied) {
-          accessDenied.remove();
-        }
-      } else {
-        songFormatter.style.display = 'none';
-        scoreCalculator.style.display = 'block';
-        
-        // Show access denied message for song formatter below the toggle button
-        if (!document.querySelector('#tools .access-denied')) {
-          const accessDenied = document.createElement('div');
-          accessDenied.className = 'card access-denied';
-          accessDenied.style.cssText = 'background: #2a1a1a; border-color: #ff4444; text-align: center; padding: 20px; margin-top: 16px;';
-          accessDenied.innerHTML = `
-            <h3 style="color: #ff4444; margin-bottom: 10px;">Access Restricted</h3>
-            <p style="color: var(--muted);">You need Admin privileges to access the Song Formatter.</p>
-            <p style="color: var(--muted); font-size: 0.9rem;">Please contact an administrator if you need access.</p>
-          `;
-          songFormatter.appendChild(accessDenied);
-        }
-      }
     }
 
     tabs.forEach(btn => {
@@ -958,6 +1323,9 @@
 
     // Initialize session on page load BEFORE setting up tabs
     loadSession();
+    
+    // Initialize theme on page load
+    loadTheme();
 
     // Initialize tab by hash
     const initial = ['home', 'brackets', 'live', 'rules', 'beatmaps', 'tools'].includes(location.hash.slice(1)) ? location.hash.slice(1) : 'home';
@@ -1570,6 +1938,41 @@
     
     // Check session expiry periodically
     setInterval(checkSessionExpiry, 60000); // Check every minute
+
+    /* ------------------------------
+       Easter Egg functionality
+       ------------------------------ */
+    function showEasterEgg() {
+      easterEggModalBackdrop.style.display = 'flex';
+      easterEggModalBackdrop.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeEasterEgg() {
+      easterEggModalBackdrop.style.display = 'none';
+      easterEggModalBackdrop.setAttribute('aria-hidden', 'true');
+      logoClickCount = 0; // Reset counter after showing easter egg
+    }
+
+    // Logo click handler for easter egg
+    logoEl.addEventListener('click', () => {
+      logoClickCount++;
+      
+      // Add a little visual feedback
+      logoEl.style.transform = 'scale(0.9)';
+      setTimeout(() => {
+        logoEl.style.transform = 'scale(1)';
+      }, 100);
+      
+      // Show easter egg after 5 clicks
+      if (logoClickCount >= 5) {
+        showEasterEgg();
+      }
+    });
+
+    closeEasterEggBtn.addEventListener('click', closeEasterEgg);
+    easterEggModalBackdrop.addEventListener('click', (e) => {
+      if (e.target === easterEggModalBackdrop) closeEasterEgg();
+    });
   </script>
 </body>
 </html>
